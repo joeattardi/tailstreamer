@@ -1,0 +1,8 @@
+// Build file for Tailstreamer.
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.7'
+}
