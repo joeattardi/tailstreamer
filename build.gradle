@@ -1,7 +1,8 @@
-// Build file for Tailstreamer.
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = "net.thinksincode.tailstreamer.TailStreamer"
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.7'
