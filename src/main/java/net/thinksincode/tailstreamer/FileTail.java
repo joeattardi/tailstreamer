@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,8 +18,6 @@ public class FileTail implements Observer {
 
     public static final int BUFFER_SIZE = 1024;
 
-    private Charset charset = Charset.defaultCharset();
-    
     /** The file being tailed. */
     private Path file;
 
