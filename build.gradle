@@ -2,7 +2,15 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 
-mainClassName = "net.thinksincode.tailstreamer.TailStreamer"
+mainClassName = 'net.thinksincode.tailstreamer.TailStreamer'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'commons-cli:commons-cli:1.2'
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.7'
