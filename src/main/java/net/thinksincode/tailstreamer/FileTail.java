@@ -63,7 +63,6 @@ public class FileTail implements Observer {
     public void close() {
         try {
             channel.close();
-            watcher.interrupt();
         } catch (IOException ioe) {
             // TODO handle exception
         }

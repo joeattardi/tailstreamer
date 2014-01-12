@@ -15,12 +15,9 @@ import java.util.Observable;
 /**
  * Watches a file for changes, and notifies observers when the file is updated.
  */
-public class FileWatcher extends Observable implements Runnable {
+public class FileWatcher extends Observable {
     /** The file being watched. */
     private Path watchedFile;
-    
-    /** The thread that the FileWatcher is watching in. */
-    private Thread watchThread;
     
     /**
      * Creates a FileWatcher for a specified file.
@@ -32,15 +29,9 @@ public class FileWatcher extends Observable implements Runnable {
     }
     
     /**
-     * Starts watching a file in a separate thread.
+     * Starts watching a file.
      */
     public void watchFile() {
-        watchThread = new Thread(this, "FileWatcher for " + watchedFile);
-        watchThread.start();
-    }
-    
-    @Override
-    public void run() {
         try {
             WatchService watchService = FileSystems.getDefault().newWatchService();
             
@@ -78,9 +69,5 @@ public class FileWatcher extends Observable implements Runnable {
             ie.printStackTrace();
             // TODO handle exception
         }
-    }
-    
-    public void interrupt() {
-        watchThread.interrupt();
     }
 }

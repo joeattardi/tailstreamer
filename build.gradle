@@ -1,15 +1,29 @@
+buildscript {
+    repositories {
+        maven { url 'http://repo.spring.io/libs-snapshot' }
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:0.5.0.M6'
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
+apply plugin: 'spring-boot'
 
+version = '0.1'
 mainClassName = 'net.thinksincode.tailstreamer.TailStreamer'
 
 repositories {
     mavenCentral()
+    maven { url 'http://repo.spring.io/libs-snapshot' }
 }
 
 dependencies {
     compile 'commons-cli:commons-cli:1.2'
+    compile 'org.springframework.boot:spring-boot-starter:0.5.0.M7'
 }
 
 task wrapper(type: Wrapper) {
