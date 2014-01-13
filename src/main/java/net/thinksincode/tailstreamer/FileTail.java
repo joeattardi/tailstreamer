@@ -14,7 +14,7 @@ import java.util.Observer;
 /**
  * Monitors a file and notifies the application when new content is added to the file. 
  */
-public class FileTail implements Observer {
+public abstract class FileTail implements Observer {
 
     public static final int BUFFER_SIZE = 1024;
 
@@ -75,6 +75,7 @@ public class FileTail implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
+        StringBuilder builder = new StringBuilder();
         
         try {      
             int bytesRead = 0;
@@ -82,11 +83,15 @@ public class FileTail implements Observer {
                 byte[] bytes = new byte[bytesRead];
                 buffer.rewind();
                 buffer.get(bytes);
-                System.out.print(new String(bytes));
+                builder.append(new String(bytes));
             }
+            
+            onNewContent(builder.toString());
         } catch (IOException ioe) {
             ioe.printStackTrace();
             // TODO handle exception
         }
     }
+    
+    public abstract void onNewContent(final String content);
 }
