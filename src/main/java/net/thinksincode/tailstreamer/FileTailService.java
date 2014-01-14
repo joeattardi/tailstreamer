@@ -1,9 +1,9 @@
 package net.thinksincode.tailstreamer;
 
-import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -11,21 +11,15 @@ import org.springframework.stereotype.Service;
 public class FileTailService {
     
     @Autowired
-    private SimpMessagingTemplate template;
+    private FileWatcher watcher;
+    
+    @Autowired
+    private FileContentReader reader;
     
     @Async
     public void tailFile(final String filePath) {
-        try {
-            FileTail tail = new FileTail(filePath) {
-                @Override
-                public void onNewContent(final String content) {
-                    template.convertAndSend("/topic/log", content);
-                }
-            };
-            tail.start();
-        } catch (IOException ioe) {
-            // TODO handle ioe
-            ioe.printStackTrace();
-        }
+        Path file = Paths.get(filePath);
+        reader.openFile(file);
+        watcher.watchFile(file);
     }
 }

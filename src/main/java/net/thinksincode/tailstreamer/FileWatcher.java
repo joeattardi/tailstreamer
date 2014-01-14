@@ -1,6 +1,5 @@
 package net.thinksincode.tailstreamer;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.ClosedWatchServiceException;
 import java.nio.file.FileSystems;
@@ -10,28 +9,23 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.util.List;
-import java.util.Observable;
+
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.stereotype.Service;
 
 /**
  * Watches a file for changes, and notifies observers when the file is updated.
  */
-public class FileWatcher extends Observable {
-    /** The file being watched. */
-    private Path watchedFile;
+@Service("fileWatcher")
+public class FileWatcher implements ApplicationEventPublisherAware {           
     
-    /**
-     * Creates a FileWatcher for a specified file.
-     * @param filePath The full path and filename
-     * @throws FileNotFoundException if the specified file does not exist
-     */
-    public FileWatcher(final Path watchedFile) {
-        this.watchedFile = watchedFile;
-    }
+    private ApplicationEventPublisher eventPublisher;
     
     /**
      * Starts watching a file.
      */
-    public void watchFile() {
+    public void watchFile(final Path watchedFile) {
         try {
             WatchService watchService = FileSystems.getDefault().newWatchService();
             
@@ -52,8 +46,7 @@ public class FileWatcher extends Observable {
                     // respond to changes to the file being watched
                     Path changedFile = (Path) event.context();
                     if (changedFile.getFileName().equals(watchedFile.getFileName())) {
-                        setChanged();
-                        notifyObservers();
+                        eventPublisher.publishEvent(new FileUpdateEvent(this));
                     }
                 }
                 
@@ -69,5 +62,10 @@ public class FileWatcher extends Observable {
             ie.printStackTrace();
             // TODO handle exception
         }
+    }
+
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher eventPublisher) {
+        this.eventPublisher = eventPublisher;
     }
 }
