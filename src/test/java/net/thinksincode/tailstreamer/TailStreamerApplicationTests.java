@@ -26,6 +26,9 @@ public class TailStreamerApplicationTests {
         Assert.assertFalse(app.validateArguments());
         Assert.assertEquals(TailStreamerApplication.MESSAGE_NO_FILE_SPECIFIED, app.getValidationErrorMessage());
         
+        Assert.assertFalse(app.parseArguments("-z"));
+        Assert.assertEquals(String.format(TailStreamerApplication.MESSAGE_INVALID_OPTION, "z"), app.getValidationErrorMessage());
+        
         Assert.assertTrue(app.parseArguments("some_file.txt"));
         Assert.assertFalse(app.validateArguments());
         Assert.assertEquals(String.format(TailStreamerApplication.MESSAGE_FILE_NOT_FOUND, "some_file.txt"), 

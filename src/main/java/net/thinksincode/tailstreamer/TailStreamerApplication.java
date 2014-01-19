@@ -25,6 +25,7 @@ public class TailStreamerApplication extends SpringApplication {
     public boolean parseArguments(String...args) {
         OptionParser parser = new OptionParser();
         parser.accepts("server.port").withRequiredArg();
+        parser.accepts("h");
         parser.nonOptions("file to watch").ofType(File.class);
         
         try {
@@ -39,7 +40,9 @@ public class TailStreamerApplication extends SpringApplication {
     
     public boolean validateArguments() { 
         List<?> nonOptionArgs = options.nonOptionArguments();
-        if (nonOptionArgs.isEmpty()) {
+        if (options.has("h")) {
+            return true;
+        } else if (nonOptionArgs.isEmpty()) {
             validationErrorMessage = MESSAGE_NO_FILE_SPECIFIED;
             return false;
         } else if (!((File) nonOptionArgs.get(0)).exists()) {

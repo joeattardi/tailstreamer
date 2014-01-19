@@ -33,7 +33,11 @@ public class TailStreamer implements CommandLineRunner {
         app.parseArguments(args);
         
         if (app.parseArguments(args) && app.validateArguments()) {
-            app.run(args);
+            if (app.getOptions().has("h")) {
+                printHelp();
+            } else {
+                app.run(args);
+            }
         } else {
             System.err.println(app.getValidationErrorMessage());
         }
