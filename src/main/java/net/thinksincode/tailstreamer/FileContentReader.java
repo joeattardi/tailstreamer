@@ -23,7 +23,7 @@ public class FileContentReader implements ApplicationListener<FileUpdateEvent> {
     private FileChannel channel;
     
     public void openFile(final Path file) {
-        try {
+        try {            
             channel = FileChannel.open(file, StandardOpenOption.READ);
             channel.position(channel.size() - 1);
         } catch (IOException e) {
@@ -32,27 +32,40 @@ public class FileContentReader implements ApplicationListener<FileUpdateEvent> {
         }        
     }
 
-    @Override
-    public void onApplicationEvent(FileUpdateEvent event) {
+    String[] readNewContent() throws IOException {
         ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
         StringBuilder builder = new StringBuilder();
         
-        try {      
-            int bytesRead = 0;
-            while ((bytesRead = channel.read(buffer)) > 0) {                                   
-                byte[] bytes = new byte[bytesRead];
-                buffer.rewind();
-                buffer.get(bytes);
-                builder.append(new String(bytes));
-            }
-            
-            String[] lines = builder.toString().split("\n|\r|\r\n");
+        int bytesRead = 0;
+        while ((bytesRead = channel.read(buffer)) > 0) {                                   
+            byte[] bytes = new byte[bytesRead];
+            buffer.rewind();
+            buffer.get(bytes);
+            builder.append(new String(bytes));
+        }
+
+        return builder.toString().trim().split("\n|\r\n");
+    }
+    
+    @Override
+    public void onApplicationEvent(FileUpdateEvent event) {
+        try {
+            String[] lines = readNewContent();
             for (String line : lines) {
                 template.convertAndSend("/topic/log", line);
-            }
+            }    
         } catch (IOException ioe) {
             ioe.printStackTrace();
             // TODO handle exception
-        }        
+        } 
+    }
+    
+    public void close() {
+        try {
+            channel.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

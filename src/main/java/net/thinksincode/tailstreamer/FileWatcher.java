@@ -3,6 +3,7 @@ package net.thinksincode.tailstreamer;
 import java.io.IOException;
 import java.nio.file.ClosedWatchServiceException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
@@ -22,18 +23,19 @@ public class FileWatcher implements ApplicationEventPublisherAware {
     
     private ApplicationEventPublisher eventPublisher;
     
+    private boolean watch = true;
+    
     /**
      * Starts watching a file.
      */
     public void watchFile(final Path watchedFile) {
         try {
             WatchService watchService = FileSystems.getDefault().newWatchService();
-            
             // WatchService only watches directories, so watch the file's parent
             watchedFile.getParent().register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
             
             // Wait for changes
-            for (boolean valid = true; valid; ) {
+            for (boolean valid = true; watch && valid; ) {
                 WatchKey key = watchService.take();
                 List<WatchEvent<?>> events = key.pollEvents();
                 for (WatchEvent<?> event : events) {
@@ -46,7 +48,7 @@ public class FileWatcher implements ApplicationEventPublisherAware {
                     // respond to changes to the file being watched
                     Path changedFile = (Path) event.context();
                     if (changedFile.getFileName().equals(watchedFile.getFileName())) {
-                        eventPublisher.publishEvent(new FileUpdateEvent(this));
+                        fileChanged();
                     }
                 }
                 
@@ -64,6 +66,14 @@ public class FileWatcher implements ApplicationEventPublisherAware {
         }
     }
 
+    void fileChanged() {
+        eventPublisher.publishEvent(new FileUpdateEvent(this));
+    }
+    
+    public void stop() {
+        watch = false;
+    }
+    
     @Override
     public void setApplicationEventPublisher(ApplicationEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;
