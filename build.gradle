@@ -27,6 +27,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-websocket:0.5.0.M7'
     compile 'org.springframework:spring-messaging:4.0.0.RELEASE'
     testCompile 'junit:junit:4.11'
+    testCompile 'com.github.stefanbirkner:system-rules:1.4.0'
     testCompile 'org.mockito:mockito-core:1.9.5'
 }
 
