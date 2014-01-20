@@ -2,15 +2,17 @@
 <html>
     <head>
         <title>TailStreamer</title>
-        <script src="bower_components/sockjs/sockjs.js"></script>
-        <script src="bower_components/stomp-websocket/lib/stomp.js"></script>            
-<!--         <script src="js/sockjs-0.3.4.js"></script> -->
-<!--         <script src="js/stomp.js"></script> -->
+        <script src="bower_components/jquery/jquery.min.js"></script>
+        <script src="bower_components/sockjs/sockjs.min.js"></script>
+        <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>            
         <script src="js/tailstreamer.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/tailstreamer.css" />
     </head>
     <body>
-        <h1>TailStreamer</h1>
-        
+        <header>
+            <span class="title">TailStreamer</span>
+            <span class="version">0.1</span>
+        </header>
         <div id="logContent">
         </div>
     </body>
