@@ -1,6 +1,12 @@
 $(function() {
 	connect();
+	sizeLogContentArea();
+	$(window).resize(sizeLogContentArea);
 });
+
+function sizeLogContentArea() {
+	$("#logContent").height($(window).height() - 85);
+}
 
 /**
  * Connects to the WebSocket endpoint and subscribes to log update
