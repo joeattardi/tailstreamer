@@ -22,6 +22,18 @@
   <defs
      id="defs4">
     <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3812">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3814" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3816" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient3803">
       <stop
          style="stop-color:#3e72ba;stop-opacity:1;"
@@ -41,6 +53,15 @@
        x2="106.31348"
        y2="72.514214"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3812"
+       id="linearGradient3818"
+       x1="76.79464"
+       y1="38.953125"
+       x2="52.629459"
+       y2="148.95312"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -50,7 +71,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="186.15446"
+     inkscape:cx="240.92127"
      inkscape:cy="987.31739"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -85,18 +106,27 @@
        sodipodi:rx="32.072342"
        sodipodi:ry="32.072342"
        d="m 105.81348,72.514214 a 32.072342,32.072342 0 1 1 -64.144687,0 32.072342,32.072342 0 1 1 64.144687,0 z"
-       transform="matrix(0.94734488,0,0,0.94734488,0.15791077,-0.03296197)" />
+       transform="matrix(0.94734488,0,0,0.94734488,0.15791077,-0.03296197)"
+       inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\favicon.png"
+       inkscape:export-xdpi="22.160006"
+       inkscape:export-ydpi="22.160006" />
     <path
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#000000;font-family:Sans;stroke-opacity:1;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-dasharray:none"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3818);fill-opacity:1;stroke:#000000;font-family:Sans;stroke-opacity:1;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
        d="M 53.8125 49.75 L 52.6875 54.875 L 60.6875 54.875 L 55.875 77.75 L 62.21875 77.75 L 67.0625 54.875 L 74.9375 54.875 L 76.0625 49.75 L 53.8125 49.75 z M 81.90625 59.1875 C 80.057279 59.187528 78.459625 59.436226 77.125 59.9375 C 75.790356 60.438829 74.703118 61.117214 73.84375 61.9375 C 72.98437 62.757837 72.341141 63.677107 71.9375 64.71875 C 71.53385 65.760439 71.343746 66.825542 71.34375 67.90625 C 71.343746 68.85679 71.48958 69.725278 71.75 70.5 C 72.010412 71.274756 72.374995 71.962255 72.84375 72.59375 C 73.312494 73.225275 73.848952 73.798191 74.5 74.3125 C 75.151034 74.826836 75.893221 75.307304 76.6875 75.75 C 77.429678 76.179699 78.048167 76.561209 78.5625 76.90625 C 79.076812 77.251312 79.499988 77.58725 79.8125 77.90625 C 80.124988 78.22527 80.332019 78.561207 80.46875 78.90625 C 80.605456 79.25131 80.687487 79.632821 80.6875 80.0625 C 80.687487 80.492195 80.611966 80.903653 80.46875 81.28125 C 80.325508 81.65886 80.075508 81.994797 79.75 82.28125 C 79.424467 82.567713 79.020822 82.774744 78.5 82.9375 C 77.979156 83.100265 77.335928 83.187504 76.59375 83.1875 C 75.916658 83.187504 75.257805 83.130213 74.59375 83 C 73.929681 82.869796 73.274734 82.67188 72.65625 82.4375 C 72.037756 82.20313 71.441402 81.937506 70.875 81.625 C 70.308591 81.312506 69.794269 80.976569 69.3125 80.625 L 68.25 86.1875 C 68.718749 86.434897 69.263019 86.671876 69.875 86.90625 C 70.486976 87.140626 71.134111 87.342448 71.84375 87.53125 C 72.553381 87.720052 73.305984 87.889323 74.09375 88 C 74.881503 88.110677 75.697909 88.15625 76.53125 88.15625 C 78.015615 88.15625 79.292957 88.029948 80.40625 87.75 C 81.519517 87.470052 82.486964 87.08073 83.28125 86.625 C 84.075504 86.169272 84.722639 85.66146 85.25 85.0625 C 85.777326 84.463545 86.200502 83.832035 86.5 83.1875 C 86.79946 82.542974 87.001283 81.888027 87.125 81.25 C 87.248678 80.611986 87.31248 80.033862 87.3125 79.5 C 87.31248 78.57553 87.184876 77.742197 86.9375 77 C 86.690085 76.257824 86.325502 75.569023 85.84375 74.9375 C 85.361961 74.306003 84.808577 73.709649 84.125 73.15625 C 83.44139 72.60288 82.635402 72.046891 81.75 71.5 C 81.072903 71.08335 80.506498 70.720069 80.03125 70.375 C 79.555978 70.029966 79.167957 69.675799 78.875 69.34375 C 78.58202 69.011737 78.355458 68.670592 78.21875 68.3125 C 78.082021 67.954447 78.03124 67.554708 78.03125 67.125 C 78.03124 66.825542 78.088531 66.532573 78.21875 66.1875 C 78.348948 65.84247 78.57551 65.518251 78.875 65.21875 C 79.174468 64.919294 79.554676 64.670596 80.0625 64.46875 C 80.5703 64.26695 81.195299 64.156274 81.9375 64.15625 C 82.601548 64.156274 83.263005 64.195336 83.875 64.3125 C 84.486962 64.429711 85.071597 64.598981 85.625 64.78125 C 86.178367 64.963564 86.6992 65.165387 87.1875 65.40625 C 87.675761 65.647157 88.096334 65.908876 88.5 66.15625 L 89.59375 60.71875 C 89.124979 60.523465 88.604146 60.338569 88.03125 60.15625 C 87.458314 59.973986 86.838522 59.799507 86.1875 59.65625 C 85.53644 59.513049 84.841129 59.397164 84.125 59.3125 C 83.408838 59.227893 82.674464 59.187528 81.90625 59.1875 z "
-       id="flowRoot2985" />
+       id="flowRoot2985"
+       inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\favicon.png"
+       inkscape:export-xdpi="22.160006"
+       inkscape:export-ydpi="22.160006" />
     <text
        xml:space="preserve"
        style="font-size:80.32652283px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        x="105.39114"
        y="84.616478"
        id="text3820"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
+       inkscape:export-xdpi="41.550011"
+       inkscape:export-ydpi="41.550011"><tspan
          sodipodi:role="line"
          id="tspan3822"
          x="105.39114"

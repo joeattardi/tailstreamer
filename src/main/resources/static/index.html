@@ -4,7 +4,7 @@
         <title>TailStreamer</title>
         <script src="bower_components/jquery/jquery.min.js"></script>
         <script src="bower_components/sockjs/sockjs.min.js"></script>
-        <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>            
+        <script src="bower_components/stomp-websocket/lib/stomp.js"></script>            
         <script src="js/tailstreamer.js"></script>
         <link rel="stylesheet" type="text/css" href="css/tailstreamer.css" />
         <link rel="icon" type="image/png" href="favicon.png" />
@@ -16,7 +16,7 @@
         <div id="logContent">
         </div>
         <footer>
-            Connected
+            <span id="connectionStatus"></span>
         </footer>
     </body>
 </html>
