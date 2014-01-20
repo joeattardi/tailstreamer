@@ -11,7 +11,6 @@ function connect() {
 	var stompClient = Stomp.over(socket);	
 	
 	stompClient.connect({}, function(frame) {
-		console.log("Connected", frame);
 		stompClient.subscribe("/topic/log", updateLog);
 	});	
 }
