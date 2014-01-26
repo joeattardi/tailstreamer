@@ -36,22 +36,36 @@ function connect(reconnect) {
 	}
 }
 
+/**
+ * Tries to connect. If the connection attempt fails, it will not attempt a reconnect.
+ */
 function retryConnection() {
 	connect(false);
 }
 
+/**
+ * Updates the connection state indicator.
+ * @param state the connection state
+ */
 function setConnectionState(state) {
 	var connectionStatus = $("#connectionStatus");
+	var indicator = $("#indicator");
+	var connectionLabel = $("#connectionLabel");
+	
+	indicator.removeClass();
 	
 	switch (state) {
 		case SockJS.CLOSED:
-			connectionStatus.html('<i class="disconnected fa fa-exclamation-triangle"></i> Disconnected');
+			indicator.addClass("disconnected");			
+			connectionLabel.html("Disconnected");
 			break;
-		case SockJS.CONNECTING: 
-			connectionStatus.html('<img style="vertical-align: middle; margin-bottom: 2px;" src="connecting.gif"> Connecting');
+		case SockJS.CONNECTING:
+			indicator.addClass("connecting");
+			connectionLabel.html("Connecting");
 			break;
 		case SockJS.CONNECTED:
-			connectionStatus.html('<i class="connected fa fa-check-square"></i> Connected');
+			indicator.addClass("connected");
+			connectionLabel.html("Connected");
 			break;
 	}
 }
