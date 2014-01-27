@@ -1,7 +1,5 @@
 package net.thinksincode.tailstreamer;
 
-import joptsimple.OptionSet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -24,7 +22,6 @@ public class TailStreamer implements CommandLineRunner {
     @Override
     public void run(String...args) {
       String[] nonOptionArgsArr = nonOptionArgs.split(",");  
-       // TODO handle no such file here
       fileTailService.tailFile(nonOptionArgsArr[0]);
     }
 

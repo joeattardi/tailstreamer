@@ -3,7 +3,6 @@ package net.thinksincode.tailstreamer;
 import java.io.IOException;
 import java.nio.file.ClosedWatchServiceException;
 import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
@@ -11,6 +10,8 @@ import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("fileWatcher")
 public class FileWatcher implements ApplicationEventPublisherAware {           
+    private Logger logger = LoggerFactory.getLogger(FileWatcher.class);
     
     private ApplicationEventPublisher eventPublisher;
     
+    /** Flag that indicates whether the watch service should continue. */
     private boolean watch = true;
     
     /**
@@ -54,22 +57,23 @@ public class FileWatcher implements ApplicationEventPublisherAware {
                 
                 valid = key.reset();
             }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-            // TODO handle exception
-        } catch (ClosedWatchServiceException cwse) {
-            cwse.printStackTrace();
-            // TODO handle exception
+        } catch (IOException | ClosedWatchServiceException e) {
+            logger.error("Error while watching file: " + e.getMessage(), e); 
         } catch (InterruptedException ie) {
-            ie.printStackTrace();
-            // TODO handle exception
+            logger.warn("Watch service was interrupted", ie);
         }
     }
 
+    /**
+     * Called when changes have been detected to the file.
+     */
     void fileChanged() {
         eventPublisher.publishEvent(new FileUpdateEvent(this));
     }
     
+    /**
+     * Signals the watcher to stop watching.
+     */
     public void stop() {
         watch = false;
     }

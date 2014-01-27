@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+/**
+ * A service that coordinates the file tail operation. The service runs asynchronously, and 
+ * maintains a FileWatcher and FileContentReader for the specified file. 
+ */
 @Service("fileTailService")
 public class FileTailService {
     
@@ -20,6 +24,10 @@ public class FileTailService {
     @Autowired
     private FileContentReader reader;
     
+    /**
+     * Begins the file tail operation on a file.
+     * @param filePath The path of the file to tail.
+     */
     @Async
     public void tailFile(final String filePath) {
         logger.info("Tailing " + filePath);

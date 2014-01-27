@@ -12,6 +12,12 @@ public class ArgumentProcessorTests {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
     
+    @Test(expected = IllegalStateException.class)
+    public void testState() {
+        ArgumentProcessor processor = new ArgumentProcessor();
+        Assert.assertTrue(processor.validateArguments());
+    }
+    
     @Test
     public void testNoArguments() {
         ArgumentProcessor processor = new ArgumentProcessor();
