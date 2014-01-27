@@ -7,11 +7,12 @@ body {
 
 header {
 	position: fixed;
-	background: #1D4E7C;
 	top: 0;
 	width: 100%;
 	height: 30px;
 	padding: 5px;
+	background: url("../logo.png") left no-repeat #D5E6F6;
+	border-bottom: 1px solid #15416A;
 }
 
 footer {
@@ -20,12 +21,6 @@ footer {
 	height: 20px;
 	width: 100%;
 	padding: 5px;
-}
-
-header .title {
-    font-weight: bold;
-    font-size: 24px;	
-    color: #FFFFFF;
 }
 
 header .version {
