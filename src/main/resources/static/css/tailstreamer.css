@@ -28,14 +28,14 @@ header .version {
 }
 
 #logContent {
-	margin-top: 45px;
+	margin-top: 50px;
 	font-family: Courier New, Courier, monospace;
 	font-size: 14px;
 	background: #FFFAF0;
 	border: 1px solid #000000;
 	padding: 5px;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
 	margin-bottom: 25px;
 	overflow: auto;
 }
@@ -79,3 +79,15 @@ header .version {
     border: 1px solid #156A30;
 }
 
+#connectionMessage {
+	position: absolute;
+	top: -50px;
+	background: #FFD6D6;
+	border-left: 5px solid #A30000;
+	border-bottom: 1px solid #A30000;
+	border-right: 1px solid #A30000;
+	padding: 5px;
+	left: 200px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}

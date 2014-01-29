@@ -1,3 +1,14 @@
+ConnectionState = {
+    DISCONNECTED: 0,
+    FAILED: 1,
+    CONNECTING: 2,
+    CONNECTED: 3
+} 
+
+NOTIFICATION_DURATION = 200;
+
+currentState = ConnectionState.DISCONNECTED;
+
 $(function() {
 	connect(true);
 	sizeLogContentArea();
@@ -8,39 +19,46 @@ $(function() {
  * Recalculates the proper size of the log content area.
  */
 function sizeLogContentArea() {
-	$("#logContent").height($(window).height() - 85);
+	$("#logContent").height($(window).height() - 90);
 }
 
 /**
  * Connects to the WebSocket endpoint and subscribes to log update
  * messages.
  */
-function connect(reconnect) {
+function connect() {
 	var socket = new SockJS("/tail");
 	var stompClient = Stomp.over(socket);	
 	
-	setConnectionState(SockJS.CONNECTING);
+	setConnectionState(ConnectionState.CONNECTING);
 	stompClient.connect({}, function(frame) {
-		setConnectionState(SockJS.CONNECTED);
+		setConnectionState(ConnectionState.CONNECTED);
 		stompClient.subscribe("/topic/log", updateLog);
 	});	
 	
 	// stomp.js has to perform cleanup on close, but we need to listen too
 	var stompCleanup = socket.onclose;
 	socket.onclose = function() {
-		setConnectionState(SockJS.CLOSED);
-		stompCleanup();
-		if (reconnect) {
-			retryConnection();
+		if (currentState === ConnectionState.CONNECTING) {
+			showConnectionError('Failed to connect! <button id="reconnect">Reconnect</button>');
+			$("#reconnect").click(retryConnection);
+			setConnectionState(ConnectionState.FAILED);
+		} else {
+			showConnectionError('Lost connection! <button id="reconnect">Reconnect</button>');
+			$("#reconnect").click(retryConnection);
+			setConnectionState(ConnectionState.DISCONNECTED);
 		}
+		stompCleanup();
 	}
 }
 
+
 /**
- * Tries to connect. If the connection attempt fails, it will not attempt a reconnect.
+ * Tries to connect. 
  */
 function retryConnection() {
-	connect(false);
+	hideConnectionError();
+	connect();
 }
 
 /**
@@ -55,19 +73,40 @@ function setConnectionState(state) {
 	indicator.removeClass();
 	
 	switch (state) {
-		case SockJS.CLOSED:
+		case ConnectionState.DISCONNECTED:
+		case ConnectionState.FAILED:
 			indicator.addClass("disconnected");			
 			connectionLabel.html("Disconnected");
 			break;
-		case SockJS.CONNECTING:
+		case ConnectionState.CONNECTING:
 			indicator.addClass("connecting");
 			connectionLabel.html("Connecting");
 			break;
-		case SockJS.CONNECTED:
+		case ConnectionState.CONNECTED:
 			indicator.addClass("connected");
 			connectionLabel.html("Connected");
 			break;
 	}
+	
+	currentState = state;
+}
+
+/**
+ * Shows a message in the connection error notification box.
+ * @param message The message to show
+ */
+function showConnectionError(message) {	
+	var messageBox = $("#connectionMessage");
+	messageBox.html(message);
+	messageBox.animate({top: 0}, NOTIFICATION_DURATION);	
+}
+
+/**
+ * Hides the connection error box
+ */
+function hideConnectionError() {
+	var messageBox = $("#connectionMessage");
+	messageBox.animate({top: -messageBox.outerHeight()}, NOTIFICATION_DURATION);
 }
 
 /**
@@ -79,4 +118,16 @@ function updateLog(content) {
 	$(contentDiv).html(content.body);
 	$("#logContent").append(contentDiv);
 	window.scrollTo(0, document.body.scrollHeight);
+	flashIndicator();
+}
+
+/**
+ * Flashes the connection indicator to indicate data
+ * was received.
+ */
+function flashIndicator() {
+	var indicator = $("#indicator");
+	indicator.fadeOut(100, function() {
+		indicator.fadeIn(100);
+	});
 }
