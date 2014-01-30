@@ -50,6 +50,8 @@ header .version {
 
 #connectionStatus {
 
+    @green: #1D9343;
+
     #indicator {
         height: 13px;
         width: 13px;
@@ -59,38 +61,32 @@ header .version {
     }
 
     .connected {
-        background: #1D9343;
-        border: 1px solid #156A30;
+        background: @green;
+        border: 1px solid darken(@green, 20%);
     }
 
     .connecting {
         -webkit-animation: pulse 1s infinite;
         -webkit-transform-origin: center;   
-        background: #1D9343;
-        border: 1px solid #156A30;
+        background: @green;
+        border: 1px solid darken(@green, 20%);
     }
     
     .disconnected {
         background: #E0E0E0;
-        border: 1px solid #A1A1A1;
+        border: 1px solid darken(#E0E0E0, 20%);
     }    
-    
-    .disconnected {
-        color: #ED9C28;
-    }
-    
-    .connected {
-        color: #1D9343;
-    }
 }
 
 #connectionMessage {
+    @red: #FFD6D6;
+    @border: darken(@red, 60%);
     position: absolute;
     top: -50px;
-    background: #FFD6D6;
-    border-left: 5px solid #A30000;
-    border-bottom: 1px solid #A30000;
-    border-right: 1px solid #A30000;
+    background: @red;
+    border-left: 5px solid @border;
+    border-bottom: 1px solid @border;
+    border-right: 1px solid @border;
     padding: 5px;
     left: 200px;
     border-bottom-left-radius: 5px;
