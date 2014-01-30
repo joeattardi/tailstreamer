@@ -6,6 +6,7 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +57,19 @@ public class FileContentReader implements ApplicationListener<FileUpdateEvent> {
             byte[] bytes = new byte[bytesRead];
             buffer.rewind();
             buffer.get(bytes);
-            builder.append(new String(bytes));
+            builder.append(sanitizeText(new String(bytes)));
         }
 
         return builder.toString().trim().split("\n|\r\n");
+    }
+    
+    /**
+     * Escapes entities in text before displaying them in the browser.
+     * @param text the text to sanitize
+     * @return the sanitized text
+     */
+    private String sanitizeText(final String text) {
+        return StringEscapeUtils.escapeHtml4(text);
     }
     
     /**

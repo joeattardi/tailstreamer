@@ -22,6 +22,7 @@ repositories {
 }
 
 dependencies {
+    compile 'org.apache.commons:commons-lang3:3.2.1'
     compile 'net.sf.jopt-simple:jopt-simple:4.6'
     compile 'org.springframework.boot:spring-boot-starter-web:0.5.0.M7'
     compile 'org.springframework.boot:spring-boot-starter-websocket:0.5.0.M7'
