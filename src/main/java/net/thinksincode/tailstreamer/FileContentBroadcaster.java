@@ -18,8 +18,5 @@ public class FileContentBroadcaster {
      */
     public void sendContent(String[] lines) {
         template.convertAndSend("/topic/log", lines);
-//        for (String line : lines) {
-//            template.convertAndSend("/topic/log", line);
-//        }    
     }
 }
