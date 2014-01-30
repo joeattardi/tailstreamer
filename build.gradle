@@ -1,13 +1,16 @@
 buildscript {
     repositories {
         maven { url 'http://repo.spring.io/libs-snapshot' }
+        mavenCentral()
         mavenLocal()
     }
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:0.5.0.M6'
+        classpath 'de.obqo.gradle:gradle-lesscss-plugin:1.0-1.3.3'
     }
 }
 
+apply plugin: 'lesscss'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
@@ -30,6 +33,20 @@ dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'com.github.stefanbirkner:system-rules:1.4.0'
     testCompile 'org.mockito:mockito-core:1.9.5'
+}
+
+lesscss {
+    source = fileTree('src/main/resources/static/less')
+    dest = 'src/main/resources/static/css'
+    compress = true
+}
+
+clean {
+    dependsOn 'cleanLesscss'
+}
+
+processResources {
+    dependsOn 'lesscss'
 }
 
 task wrapper(type: Wrapper) {
