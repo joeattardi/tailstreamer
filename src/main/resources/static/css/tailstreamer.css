@@ -37,7 +37,8 @@ header .version {
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 25px;
-	overflow: auto;
+	overflow-y: auto;
+	word-wrap: break-word;
 }
 
 #connectionStatus .disconnected {

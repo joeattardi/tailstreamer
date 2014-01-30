@@ -16,9 +16,10 @@ public class FileContentBroadcaster {
      * Broadcasts new content to any subscribed clients.
      * @param lines The lines to broadcast
      */
-    public void sendContent(String...lines) {
-        for (String line : lines) {
-            template.convertAndSend("/topic/log", line);
-        }    
+    public void sendContent(String[] lines) {
+        template.convertAndSend("/topic/log", lines);
+//        for (String line : lines) {
+//            template.convertAndSend("/topic/log", line);
+//        }    
     }
 }

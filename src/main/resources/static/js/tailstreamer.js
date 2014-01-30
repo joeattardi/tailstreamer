@@ -30,6 +30,8 @@ function connect() {
 	var socket = new SockJS("/tail");
 	var stompClient = Stomp.over(socket);	
 	
+	stompClient.debug = false;
+	
 	setConnectionState(ConnectionState.CONNECTING);
 	stompClient.connect({}, function(frame) {
 		setConnectionState(ConnectionState.CONNECTED);
@@ -114,10 +116,18 @@ function hideConnectionError() {
  * @param content The message received over the socket
  */
 function updateLog(content) {
-	var contentDiv = document.createElement("div");
-	$(contentDiv).html(content.body);
-	$("#logContent").append(contentDiv);
-	window.scrollTo(0, document.body.scrollHeight);
+	var logContent = $("#logContent");
+
+	var messages = JSON.parse(content.body);
+	
+	for (var i = 0; i < messages.length; i++) {
+		var contentDiv = $(document.createElement("div"));	
+		contentDiv.html(messages[i]);
+		logContent.append(contentDiv.hide().fadeIn(200));
+	}
+
+	logContent[0].scrollTop = logContent[0].scrollHeight;
+	
 	flashIndicator();
 }
 
