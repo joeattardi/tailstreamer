@@ -13,13 +13,14 @@ $(function() {
 	connect(true);
 	sizeLogContentArea();
 	$(window).resize(sizeLogContentArea);
+	$("#clearButton").click(clearLog);
 });
 
 /**
  * Recalculates the proper size of the log content area.
  */
 function sizeLogContentArea() {
-	$("#logContent").height($(window).height() - 90);
+	$("#logContent").height($(window).height() - 100);
 }
 
 /**
@@ -125,9 +126,7 @@ function updateLog(content) {
 	var autoscroll = logContent.scrollTop() + logContent.innerHeight() == logContent[0].scrollHeight;
 	
 	for (var i = 0; i < messages.length; i++) {
-		var contentDiv = $(document.createElement("div"));	
-		contentDiv.html(messages[i]);
-		logContent.append(contentDiv.hide().fadeIn(200));
+		addLogMessage(messages[i]);
 	}
 
 	if (autoscroll) {
@@ -135,6 +134,17 @@ function updateLog(content) {
 	}
 	
 	flashIndicator();
+}
+
+function addLogMessage(message) {
+	var logContent = $("#logContent");
+	var contentDiv = $(document.createElement("div"));	
+	contentDiv.html(message);
+	logContent.append(contentDiv.hide().fadeIn(200));
+}
+
+function clearLog() {
+	$("#logContent").empty();
 }
 
 /**

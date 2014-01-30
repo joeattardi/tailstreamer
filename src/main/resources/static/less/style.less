@@ -9,10 +9,33 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 30px;
-    padding: 5px;
-    background: url("../logo.png") left no-repeat #D5E6F6;
-    border-bottom: 1px solid #15416A;
+    
+    #banner { 
+        background: url("../logo.png") left no-repeat #D5E6F6;
+        height: 30px;   
+        padding: 5px;     
+        border-bottom: 1px solid #15416A;
+    }
+    
+    #toolbar {
+        background: #F2F2F2;
+        border-bottom: 1px solid darken(#F2F2F2, 50%);
+        padding: 5px;
+        padding-left: 10px;
+        
+        a {
+            text-decoration: none;
+            color: #000000;
+            padding: 3px;
+        }
+        
+        a:hover {
+            border: 1px solid gray;
+            background: lightGray;
+            border-radius: 4px;
+            padding: 2px;
+        }
+    }
 }
 
 footer {
@@ -21,6 +44,8 @@ footer {
     height: 20px;
     width: 100%;
     padding: 5px;
+    background: #F2F2F2;
+    border-top: 1px solid darken(#F2F2F2, 50%);
 }
 
 header .version {
@@ -28,15 +53,11 @@ header .version {
 }
 
 #logContent {
-    margin-top: 50px;
+    margin-top: 70px;
     font-family: Courier New, Courier, monospace;
     font-size: 14px;
-    background: #FFFAF0;
-    border: 1px solid #000000;
-    padding: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
     margin-bottom: 25px;
+    padding: 0 5px 0 5px;
     overflow-y: auto;
     word-wrap: break-word;
 }
