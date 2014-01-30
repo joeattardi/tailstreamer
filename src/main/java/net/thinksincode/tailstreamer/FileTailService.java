@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
  */
 @Service("fileTailService")
 public class FileTailService {
-    
     private Logger logger = LoggerFactory.getLogger(FileTailService.class);
     
     @Autowired
@@ -30,9 +29,8 @@ public class FileTailService {
      */
     @Async
     public void tailFile(final String filePath) {
-        logger.info("Tailing " + filePath);
-        
-        Path file = Paths.get(filePath);
+        Path file = Paths.get(filePath).toAbsolutePath();
+        logger.info("Tailing " + file);
         reader.openFile(file);
         watcher.watchFile(file);
     }
