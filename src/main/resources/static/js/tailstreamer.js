@@ -120,13 +120,19 @@ function updateLog(content) {
 
 	var messages = JSON.parse(content.body);
 	
+	// If we're scrolled down all the way, then automatically scroll to the bottom after appending
+	// the new log entry. If not, that means the user scrolled up, so in that case we won't autoscroll.
+	var autoscroll = logContent.scrollTop() + logContent.innerHeight() == logContent[0].scrollHeight;
+	
 	for (var i = 0; i < messages.length; i++) {
 		var contentDiv = $(document.createElement("div"));	
 		contentDiv.html(messages[i]);
 		logContent.append(contentDiv.hide().fadeIn(200));
 	}
 
-	logContent[0].scrollTop = logContent[0].scrollHeight;
+	if (autoscroll) {
+		logContent.scrollTop(logContent[0].scrollHeight);
+	}
 	
 	flashIndicator();
 }
