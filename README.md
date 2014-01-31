@@ -19,7 +19,7 @@ By default, TailStreamer runs on port 8080:
     
 You can specify an alternate port with the `--server.port` argument:
 
-    tailstreamer --server.port=8000
+    tailstreamer --server.port=8000 /var/log/httpd-access.log
     
 # Screenshots
 ![Screenshot](http://joeattardi.github.io/tailstreamer/screenshot.png)
