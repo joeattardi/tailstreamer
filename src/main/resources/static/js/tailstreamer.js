@@ -10,17 +10,42 @@ NOTIFICATION_DURATION = 200;
 currentState = ConnectionState.DISCONNECTED;
 
 $(function() {
-	connect(true);
-	sizeLogContentArea();
-	$(window).resize(sizeLogContentArea);
-	$("#clearButton").click(clearLog);
+    connect(true);
+    sizeLogContentArea();
+    
+    fixContains();
+    $(window).resize(sizeLogContentArea);
+    $("#clearButton").click(clearLog);
+    $("#searchText").on("keyup click", updateSearch);
 });
+
+/**
+ * Changes the jQuery :contains selector so that it's
+ * case-insensitive.
+ */
+function fixContains() {
+    jQuery.expr[':'].contains = function(a, i, m) {
+          return jQuery(a).text().toUpperCase()
+              .indexOf(m[3].toUpperCase()) >= 0;
+        };  
+}
+
+function updateSearch() {
+    var searchText = $("#searchText").val();
+    $("#logContent :not(:contains(" + searchText + "))").hide();
+    $("#logContent :contains(" + searchText + ")").show();
+    
+    var logContent = $("#logContent");
+    logContent.removeHighlight();
+    logContent.highlight(searchText);
+    logContent.scrollTop(logContent[0].scrollHeight);
+}
 
 /**
  * Recalculates the proper size of the log content area.
  */
 function sizeLogContentArea() {
-	$("#logContent").height($(window).height() - 100);
+    $("#logContent").height($(window).height() - 110);
 }
 
 /**
@@ -28,31 +53,31 @@ function sizeLogContentArea() {
  * messages.
  */
 function connect() {
-	var socket = new SockJS("/tail");
-	var stompClient = Stomp.over(socket);	
-	
-	stompClient.debug = false;
-	
-	setConnectionState(ConnectionState.CONNECTING);
-	stompClient.connect({}, function(frame) {
-		setConnectionState(ConnectionState.CONNECTED);
-		stompClient.subscribe("/topic/log", updateLog);
-	});	
-	
-	// stomp.js has to perform cleanup on close, but we need to listen too
-	var stompCleanup = socket.onclose;
-	socket.onclose = function() {
-		if (currentState === ConnectionState.CONNECTING) {
-			showConnectionError('Failed to connect! <button id="reconnect">Reconnect</button>');
-			$("#reconnect").click(retryConnection);
-			setConnectionState(ConnectionState.FAILED);
-		} else {
-			showConnectionError('Lost connection! <button id="reconnect">Reconnect</button>');
-			$("#reconnect").click(retryConnection);
-			setConnectionState(ConnectionState.DISCONNECTED);
-		}
-		stompCleanup();
-	}
+    var socket = new SockJS("/tail");
+    var stompClient = Stomp.over(socket);   
+    
+    stompClient.debug = false;
+    
+    setConnectionState(ConnectionState.CONNECTING);
+    stompClient.connect({}, function(frame) {
+        setConnectionState(ConnectionState.CONNECTED);
+        stompClient.subscribe("/topic/log", updateLog);
+    }); 
+    
+    // stomp.js has to perform cleanup on close, but we need to listen too
+    var stompCleanup = socket.onclose;
+    socket.onclose = function() {
+        if (currentState === ConnectionState.CONNECTING) {
+            showConnectionError('Failed to connect! <button id="reconnect">Reconnect</button>');
+            $("#reconnect").click(retryConnection);
+            setConnectionState(ConnectionState.FAILED);
+        } else {
+            showConnectionError('Lost connection! <button id="reconnect">Reconnect</button>');
+            $("#reconnect").click(retryConnection);
+            setConnectionState(ConnectionState.DISCONNECTED);
+        }
+        stompCleanup();
+    }
 }
 
 
@@ -60,8 +85,8 @@ function connect() {
  * Tries to connect. 
  */
 function retryConnection() {
-	hideConnectionError();
-	connect();
+    hideConnectionError();
+    connect();
 }
 
 /**
@@ -69,47 +94,47 @@ function retryConnection() {
  * @param state the connection state
  */
 function setConnectionState(state) {
-	var connectionStatus = $("#connectionStatus");
-	var indicator = $("#indicator");
-	var connectionLabel = $("#connectionLabel");
-	
-	indicator.removeClass();
-	
-	switch (state) {
-		case ConnectionState.DISCONNECTED:
-		case ConnectionState.FAILED:
-			indicator.addClass("disconnected");			
-			connectionLabel.html("Disconnected");
-			break;
-		case ConnectionState.CONNECTING:
-			indicator.addClass("connecting");
-			connectionLabel.html("Connecting");
-			break;
-		case ConnectionState.CONNECTED:
-			indicator.addClass("connected");
-			connectionLabel.html("Connected");
-			break;
-	}
-	
-	currentState = state;
+    var connectionStatus = $("#connectionStatus");
+    var indicator = $("#indicator");
+    var connectionLabel = $("#connectionLabel");
+    
+    indicator.removeClass();
+    
+    switch (state) {
+        case ConnectionState.DISCONNECTED:
+        case ConnectionState.FAILED:
+            indicator.addClass("disconnected");         
+            connectionLabel.html("Disconnected");
+            break;
+        case ConnectionState.CONNECTING:
+            indicator.addClass("connecting");
+            connectionLabel.html("Connecting");
+            break;
+        case ConnectionState.CONNECTED:
+            indicator.addClass("connected");
+            connectionLabel.html("Connected");
+            break;
+    }
+    
+    currentState = state;
 }
 
 /**
  * Shows a message in the connection error notification box.
  * @param message The message to show
  */
-function showConnectionError(message) {	
-	var messageBox = $("#connectionMessage");
-	messageBox.html(message);
-	messageBox.animate({top: 0}, NOTIFICATION_DURATION);	
+function showConnectionError(message) { 
+    var messageBox = $("#connectionMessage");
+    messageBox.html(message);
+    messageBox.animate({top: 0}, NOTIFICATION_DURATION);    
 }
 
 /**
  * Hides the connection error box
  */
 function hideConnectionError() {
-	var messageBox = $("#connectionMessage");
-	messageBox.animate({top: -messageBox.outerHeight()}, NOTIFICATION_DURATION);
+    var messageBox = $("#connectionMessage");
+    messageBox.animate({top: -messageBox.outerHeight()}, NOTIFICATION_DURATION);
 }
 
 /**
@@ -117,34 +142,46 @@ function hideConnectionError() {
  * @param content The message received over the socket
  */
 function updateLog(content) {
-	var logContent = $("#logContent");
+    var logContent = $("#logContent");
 
-	var messages = JSON.parse(content.body);
-	
-	// If we're scrolled down all the way, then automatically scroll to the bottom after appending
-	// the new log entry. If not, that means the user scrolled up, so in that case we won't autoscroll.
-	var autoscroll = logContent.scrollTop() + logContent.innerHeight() == logContent[0].scrollHeight;
-	
-	for (var i = 0; i < messages.length; i++) {
-		addLogMessage(messages[i]);
-	}
+    var messages = JSON.parse(content.body);
+    
+    // If we're scrolled down all the way, then automatically scroll to the bottom after appending
+    // the new log entry. If not, that means the user scrolled up, so in that case we won't autoscroll.
+    var autoscroll = logContent.scrollTop() + logContent.innerHeight() == logContent[0].scrollHeight;
+    
+    for (var i = 0; i < messages.length; i++) {
+        addLogMessage(messages[i]);
+    }
 
-	if (autoscroll) {
-		logContent.scrollTop(logContent[0].scrollHeight);
-	}
-	
-	flashIndicator();
+    if (autoscroll) {
+        logContent.scrollTop(logContent[0].scrollHeight);
+    }
+    
+    flashIndicator();
 }
 
 function addLogMessage(message) {
-	var logContent = $("#logContent");
-	var contentDiv = $(document.createElement("div"));	
-	contentDiv.html(message);
-	logContent.append(contentDiv.hide().fadeIn(200));
+    var searchText = $("#searchText").val();
+    
+    var logContent = $("#logContent");
+    var contentDiv = $(document.createElement("div"));
+    contentDiv.html(message);
+    
+    if (searchText.length > 0) {
+        // If this doesn't match the search text, hide it
+        if (message.toUpperCase().indexOf(searchText.toUpperCase()) < 0) {
+            contentDiv.hide();
+        } else {
+            contentDiv.highlight(searchText);
+        }
+    }
+        
+    logContent.append(contentDiv);
 }
 
 function clearLog() {
-	$("#logContent").empty();
+    $("#logContent").empty();
 }
 
 /**
@@ -152,8 +189,8 @@ function clearLog() {
  * was received.
  */
 function flashIndicator() {
-	var indicator = $("#indicator");
-	indicator.fadeOut(100, function() {
-		indicator.fadeIn(100);
-	});
+    var indicator = $("#indicator");
+    indicator.fadeOut(100, function() {
+        indicator.fadeIn(100);
+    });
 }
