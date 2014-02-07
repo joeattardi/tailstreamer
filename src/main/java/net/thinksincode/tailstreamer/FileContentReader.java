@@ -37,7 +37,11 @@ public class FileContentReader implements ApplicationListener<FileUpdateEvent> {
     public void openFile(final Path file) {
         try {            
             channel = FileChannel.open(file, StandardOpenOption.READ);
-            channel.position(channel.size() - 1);
+
+            // If the file is not empty, seek to the end.
+            if (channel.size() > 0) {
+                channel.position(channel.size() - 1);
+            }
         } catch (IOException e) {
             logger.error(String.format("Error opening \"%s\": %s", file, e.getMessage()), e);
         }        
