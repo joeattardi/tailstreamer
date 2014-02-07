@@ -32,6 +32,19 @@ public class FileContentReaderTests {
                 reader.readNewContent());
         
         reader.close();
-        
+    }
+
+    @Test
+    public void testEmptyFile() throws IOException {
+        File file = folder.newFile();
+        FileContentReader reader = new FileContentReader();
+        reader.openFile(file.toPath());
+
+        FileWriter writer = new FileWriter(file);
+        writer.write("First line\nSecond line");
+        writer.close();
+
+        Assert.assertArrayEquals(new String[] {"First line", "Second line"}, reader.readNewContent());
+        reader.close();
     }
 }
