@@ -12,6 +12,7 @@ buildscript {
 
 apply plugin: 'lesscss'
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'spring-boot'
@@ -50,5 +51,5 @@ processResources {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.7'
+    gradleVersion = '1.10'
 }
