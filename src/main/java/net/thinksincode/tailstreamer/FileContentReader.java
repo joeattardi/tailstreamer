@@ -53,15 +53,22 @@ public class FileContentReader implements ApplicationListener<FileUpdateEvent> {
      * @throws IOException if an error occurred while reading from the file
      */
     String[] readNewContent() throws IOException {
+        // Check for truncation. If the file was truncated, 
+        // reset the position to 0.
+        if (channel.position() > channel.size()) {
+            channel.position(0);
+        }
+        
         ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
         StringBuilder builder = new StringBuilder();
         
-        int bytesRead = 0;
+        int bytesRead;
         while ((bytesRead = channel.read(buffer)) > 0) {                                   
             byte[] bytes = new byte[bytesRead];
             buffer.rewind();
             buffer.get(bytes);
             builder.append(sanitizeText(new String(bytes)));
+            buffer.rewind();
         }
 
         return builder.toString().trim().split("\n|\r\n");
