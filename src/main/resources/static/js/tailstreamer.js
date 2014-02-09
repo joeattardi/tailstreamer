@@ -12,11 +12,13 @@ currentState = ConnectionState.DISCONNECTED;
 $(function() {
     connect(true);
     sizeLogContentArea();
-    
+
     fixContains();
     $(window).resize(sizeLogContentArea);
+
     $("#clearButton").click(clearLog);
     $("#searchText").on("keyup click", updateSearch);
+    $("#reconnectLink").hide().click(retryConnection);
 });
 
 /**
@@ -45,7 +47,7 @@ function updateSearch() {
  * Recalculates the proper size of the log content area.
  */
 function sizeLogContentArea() {
-    $("#logContent").height($(window).height() - 110);
+    $("#logContent").height($(window).height() - 75);
 }
 
 /**
@@ -68,12 +70,12 @@ function connect() {
     var stompCleanup = socket.onclose;
     socket.onclose = function() {
         if (currentState === ConnectionState.CONNECTING) {
-            showConnectionError('Failed to connect! <button id="reconnect">Reconnect</button>');
-            $("#reconnect").click(retryConnection);
+//            showConnectionError('Failed to connect! <button id="reconnect">Reconnect</button>');
+//            $("#reconnect").click(retryConnection);
             setConnectionState(ConnectionState.FAILED);
         } else {
-            showConnectionError('Lost connection! <button id="reconnect">Reconnect</button>');
-            $("#reconnect").click(retryConnection);
+//            showConnectionError('Lost connection! <button id="reconnect">Reconnect</button>');
+//            $("#reconnect").click(retryConnection);
             setConnectionState(ConnectionState.DISCONNECTED);
         }
         stompCleanup();
@@ -95,25 +97,32 @@ function retryConnection() {
  */
 function setConnectionState(state) {
     var connectionStatus = $("#connectionStatus");
-    var indicator = $("#indicator");
-    var connectionLabel = $("#connectionLabel");
-    
-    indicator.removeClass();
+    var icon = $("#connectionStatus i");
+    var message = $("#connectionMessage");    
+    var reconnectLink = $("#reconnectLink");
+    icon.removeClass();
     
     switch (state) {
         case ConnectionState.DISCONNECTED:
+            icon.addClass("fa fa-exclamation-triangle");
+            message.html("Disconnected");
+            reconnectLink.show();
+            break;
         case ConnectionState.FAILED:
-            indicator.addClass("disconnected");         
-            connectionLabel.html("Disconnected");
+            icon.addClass("fa fa-exclamation-triangle");
+            message.html("Failed to connect");
+            reconnectLink.show();
             break;
         case ConnectionState.CONNECTING:
-            indicator.addClass("connecting");
-            connectionLabel.html("Connecting");
+            icon.addClass("fa fa-refresh");
+            message.html("Connecting");
+            reconnectLink.hide();
             break;
         case ConnectionState.CONNECTED:
-            indicator.addClass("connected");
-            connectionLabel.html("Connected");
-            break;
+            icon.addClass("fa fa-check-circle");
+            message.html("Connected");
+            reconnectLink.hide();
+            break;                       
     }
     
     currentState = state;
@@ -163,7 +172,7 @@ function updateLog(content) {
 
 function addLogMessage(message) {
     var searchText = $("#searchText").val();
-    
+
     var logContent = $("#logContent");
     var contentDiv = $(document.createElement("div"));
     contentDiv.html(message);

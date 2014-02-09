@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial;
-    font-size: 14px;
+    font-family: Arial;  
+    font-size: 14px;  
 }
 
 input {
@@ -13,56 +13,56 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
+    background: #000000;
     
     #banner { 
-        background: url("../logo.png") left no-repeat #D5E6F6;
-        height: 30px;
-        padding: 5px;     
-        border-bottom: 1px solid #15416A;
+        background: url("../logo.png") left no-repeat;
+        height: 35px;
+        margin-left: 10px;
+        color: #FFFFFF;
+        padding: 5px;  
+        padding-left: 220px;
+    }
+    
+    #filename {
+        color: #86BACC;
+        margin-left: 10px;
+        font-size: 20px;
+        line-height: 35px;
     }
     
     #toolbar {
-        background: #F2F2F2;
-        border-bottom: 1px solid darken(#F2F2F2, 50%);
-        padding: 2px;
+        color: #CCCCCC;
         padding-left: 10px;
-        height: 25px;
-        line-height: 25px;
+        padding-right: 10px;
+        height: 30px;
+        line-height: 30px;
+
+        .search {
+            float: right;
+            input {
+                border: 1px solid #AAAAAA;                
+            }
+        }
         
         a {
             text-decoration: none;
-            color: #000000;
-            padding: 3px;
+            color: #CCCCCC;
+            padding: 2px 5px 2px 5px;
         }
         
         a:hover {
-            border: 1px solid gray;
-            background: lightGray;
-            border-radius: 4px;
-            padding: 2px;
+            color: #FFFFFF;
+            background: #333333;
+            border-radius: 5px;
         }
     }
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    height: 20px;
-    width: 100%;
-    padding: 5px;
-    background: #F2F2F2;
-    border-top: 1px solid darken(#F2F2F2, 50%);
-}
-
-header .version {
-    color: #737373;
 }
 
 #logContent {
     margin-top: 75px;
     font-family: Courier New, Courier, monospace;
     font-size: 12px;
-    margin-bottom: 25px;
     padding: 0 5px 0 5px;
     overflow-y: auto;
     word-wrap: break-word;
@@ -72,7 +72,6 @@ header .version {
     }
 }
 
-
 @-webkit-keyframes pulse {
     0% { opacity: 0; }
     50% { opacity: 1; }
@@ -80,46 +79,26 @@ header .version {
 }
 
 #connectionStatus {
-
-    @green: #1D9343;
-
-    #indicator {
-        height: 13px;
-        width: 13px;
-        margin-right: 5px;  
-        border-radius: 7px;
-        float: left;
-    }
-
-    .connected {
-        background: @green;
-        border: 1px solid darken(@green, 20%);
-    }
-
-    .connecting {
-        -webkit-animation: pulse 1s infinite;
-        -webkit-transform-origin: center;   
-        background: @green;
-        border: 1px solid darken(@green, 20%);
+    float: right;
+    color: #FFFFFF;
+    padding: 5px;
+    padding-right: 10px;    
+    font-size: 11px;
+    
+    .fa-exclamation-triangle {
+        color: #FFCC33;
     }
     
-    .disconnected {
-        background: #E0E0E0;
-        border: 1px solid darken(#E0E0E0, 20%);
-    }    
+    .fa-check-circle {
+        color: #48B848;
+    }
+    
+    a {
+        color: #AAAAAA;
+    }
+    
+    a:hover {
+        color: #CCCCCC;
+    }
 }
 
-#connectionMessage {
-    @red: #FFD6D6;
-    @border: darken(@red, 60%);
-    position: absolute;
-    top: -50px;
-    background: @red;
-    border-left: 5px solid @border;
-    border-bottom: 1px solid @border;
-    border-right: 1px solid @border;
-    padding: 5px;
-    left: 200px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
