@@ -23,13 +23,29 @@ public class FileTailService {
     @Autowired
     private FileContentReader reader;
     
+    private Path file;
+    
     /**
-     * Begins the file tail operation on a file.
+     * Sets the file that will be tailed.
      * @param filePath The path of the file to tail.
      */
+    public void setFile(final String filePath) {
+        file = Paths.get(filePath).toAbsolutePath();
+    }
+    
+    /**
+     * Gets the path of the file being tailed.
+     * @return the absolute path of the file
+     */
+    public String getFile() {
+        return file.toString();
+    }
+    
+    /**
+     * Begins the file tail operation on a file.
+     */
     @Async
-    public void tailFile(final String filePath) {
-        Path file = Paths.get(filePath).toAbsolutePath();
+    public void tailFile() {
         logger.info("Tailing " + file);
         reader.openFile(file);
         watcher.watchFile(file);

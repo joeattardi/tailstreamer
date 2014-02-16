@@ -22,7 +22,8 @@ public class TailStreamer implements CommandLineRunner {
     @Override
     public void run(String...args) {
       String[] nonOptionArgsArr = nonOptionArgs.split(",");  
-      fileTailService.tailFile(nonOptionArgsArr[0]);
+      fileTailService.setFile(nonOptionArgsArr[0]);
+      fileTailService.tailFile();
     }
 
     public static void main(String...args) {
