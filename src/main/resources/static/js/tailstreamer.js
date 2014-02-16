@@ -47,7 +47,7 @@ function updateSearch() {
  * Recalculates the proper size of the log content area.
  */
 function sizeLogContentArea() {
-    $("#logContent").height($(window).height() - 75);
+    $("#logContent").height($(window).height() - 115);
 }
 
 /**
