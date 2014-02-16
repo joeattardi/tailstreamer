@@ -5,7 +5,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:0.5.0.M6'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC3'
         classpath 'de.obqo.gradle:gradle-lesscss-plugin:1.0-1.3.3'
     }
 }
@@ -22,15 +22,16 @@ mainClassName = 'net.thinksincode.tailstreamer.TailStreamer'
 
 repositories {
     mavenCentral()
-    maven { url 'http://repo.spring.io/libs-snapshot' }
+    maven { url 'http://repo.spring.io/libs-milestone' }
 }
 
 dependencies {
     compile 'org.apache.commons:commons-lang3:3.2.1'
     compile 'net.sf.jopt-simple:jopt-simple:4.6'
-    compile 'org.springframework.boot:spring-boot-starter-web:0.5.0.M7'
-    compile 'org.springframework.boot:spring-boot-starter-websocket:0.5.0.M7'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.0.0.RC1'
+    compile 'org.springframework.boot:spring-boot-starter-websocket:1.0.0.RC1'
     compile 'org.springframework:spring-messaging:4.0.0.RELEASE'
+    compile 'org.thymeleaf:thymeleaf-spring4:2.1.2.RELEASE'
     testCompile 'junit:junit:4.11'
     testCompile 'com.github.stefanbirkner:system-rules:1.4.0'
     testCompile 'org.mockito:mockito-core:1.9.5'
