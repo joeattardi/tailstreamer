@@ -6,8 +6,10 @@
         <script src="js/jquery.highlight-4.js"></script>
         <script src="bower_components/sockjs/sockjs.min.js"></script>
         <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
+        <script src="bower_components/qtip2/jquery.qtip.js"></script>
         <script src="js/tailstreamer.js"></script>        
         <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}" href="../static/font-awesome/css/font-awesome.min.css"/>
+        <link rel="stylesheet" th:href="@{/bower_components/qtip2/jquery.qtip.css}" href="../static/bower_components/qtip2/jquery.qtip.css" />
         <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
         <link rel="icon" type="image/png" href="favicon.png" />
         <meta charset="UTF-8" />
@@ -23,10 +25,12 @@
                 <span th:text="${file}" id="filename"></span>
             </div>
             <div id="toolbar">
-                <a href="#" id="clearButton"><i class="fa fa-ban"></i> Clear</a>
+                <a href="#" accesskey="C" id="clearButton"><i class="fa fa-ban"></i></a>
+<!--                 <a href="#" id="filterButton"><i class="fa fa-filter"></i></a> -->
+<!--                 <a href="#" id="highlightButton"><i class="fa fa-pencil"></i></a> -->
                 <span class="search">
                     <i class="fa fa-search"></i>
-                    <input id="searchText" type="search" size="30" accesskey="s" />
+                    <input id="searchText" placeholder="Search content" type="search" size="30" accesskey="s" />
                 </span> 
             </div>
         </header>

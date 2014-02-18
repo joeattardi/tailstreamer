@@ -19,6 +19,21 @@ $(function() {
     $("#clearButton").click(clearLog);
     $("#searchText").on("keyup click", updateSearch);
     $("#reconnectLink").hide().click(retryConnection);
+    
+    $.fn.qtip.defaults.style.classes = "qtip-light";
+    
+    $("#clearButton").qtip({content: "Clear contents <span class=\"shortcut\">Alt+C</span>"});
+    $("#filterButton").qtip({content: "Configure filters"});
+    $("#highlightButton").qtip({content: "Configure highlighting"});
+    
+    $("#searchText").qtip({
+        content: "Search <span class=\"shortcut\">Alt+S</span>",
+        position: {
+            my: "top center",
+            at: "bottom center",
+            target: $("#searchText")
+        }
+    })
 });
 
 /**
