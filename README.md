@@ -21,4 +21,6 @@ You can specify an alternate port with the `--server.port` argument:
 
     tailstreamer --server.port=8000 /var/log/httpd-access.log
     
-
+# Screenshots
+![Screenshot](http://joeattardi.github.io/tailstreamer/screenshot.png)
+![Screenshot](http://joeattardi.github.io/tailstreamer/screenshot_search.png)
