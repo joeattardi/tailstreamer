@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: {
-                    "dist/<%= pkg.name %>.js": ["<%= concat.dist.dest %>"]
+                    "dist/<%= pkg.name %>.js": ["<%= concat.js.dest %>"]
                 }
             }
         },
@@ -31,6 +31,9 @@ module.exports = function(grunt) {
         jshint: {
             files: ["Gruntfile.js", "js/tailstreamer.js"]            
         },
+        clean: [
+            "css/style.css", "dist"
+        ],
         watch: {
             less: {
                 files: ["less/style.less"],
@@ -45,6 +48,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-watch");
-    
+    grunt.loadNpmTasks("grunt-contrib-clean");
+
     grunt.registerTask("default", ["jshint", "concat", "uglify"]);
 };
