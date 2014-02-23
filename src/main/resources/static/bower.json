@@ -1,0 +1,10 @@
+{
+    "name": "tailstreamer",
+    "version": "0.1.0",
+    "dependencies": {
+        "jquery": "latest",
+        "qtip2": "latest",
+        "sockjs": "latest",
+        "stomp-websocket": "latest"
+    }
+}

@@ -43,7 +43,6 @@
     "commit": "f5300e9a698f203d47307cfdf90399504fd2f6b2"
   },
   "_source": "git://github.com/qTip2/bower.git",
-  "_target": "~2.2.0",
-  "_originalSource": "qtip2",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "qtip2"
 }

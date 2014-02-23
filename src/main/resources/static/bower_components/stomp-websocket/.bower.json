@@ -1,15 +1,14 @@
 {
   "name": "stomp-websocket",
   "homepage": "https://github.com/jmesnil/stomp-websocket",
-  "version": "2.3.0",
-  "_release": "2.3.0",
+  "version": "2.3.1",
+  "_release": "2.3.1",
   "_resolution": {
     "type": "version",
-    "tag": "v2.3.0",
-    "commit": "9c7cec014da1e032c9f03ac8e7ae1898e7664b24"
+    "tag": "2.3.1",
+    "commit": "8246341a73113fb9c2db54ea784a67eb4daa5aa2"
   },
   "_source": "git://github.com/jmesnil/stomp-websocket.git",
-  "_target": "~2.3.0",
-  "_originalSource": "stomp-websocket",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "stomp-websocket"
 }

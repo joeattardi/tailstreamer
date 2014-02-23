@@ -3,7 +3,7 @@ ConnectionState = {
     FAILED: 1,
     CONNECTING: 2,
     CONNECTED: 3
-} 
+}; 
 
 NOTIFICATION_DURATION = 200;
 
@@ -33,7 +33,7 @@ $(function() {
             at: "bottom center",
             target: $("#searchText")
         }
-    })
+    });
 });
 
 /**
@@ -94,7 +94,7 @@ function connect() {
             setConnectionState(ConnectionState.DISCONNECTED);
         }
         stompCleanup();
-    }
+    };
 }
 
 
