@@ -6,14 +6,14 @@ module.exports = function(grunt) {
         },
         concat: {
             js: {
-                src: ["lib/**/*.js", "js/*.js"],
-                dest: "dist/<%= pkg.name %>.js"
+                src: ["lib/**/*.js", "src/main/resources/static/js/**/*.js"],
+                dest: "build/resources/main/static/js/<%= pkg.name %>.js"
             }
         },
         uglify: {
             dist: {
                 files: {
-                    "dist/<%= pkg.name %>.js": ["<%= concat.js.dest %>"]
+                    "build/resources/main/static/js/<%= pkg.name %>.js": ["<%= concat.js.dest %>"]
                 }
             }
         },
@@ -24,19 +24,19 @@ module.exports = function(grunt) {
                     cleancss: true
                 },
                 files: {
-                    "css/style.css": "less/style.less"
+                    "build/resources/main/static/css/style.css": "src/main/resources/static/less/style.less"
                 }
             }
         },
         jshint: {
-            files: ["Gruntfile.js", "js/tailstreamer.js"]            
+            files: ["Gruntfile.js", "src/main/resources/static/js/tailstreamer.js"]            
         },
         clean: [
-            "css/style.css", "dist"
+            "build/resources/main/static/css/style.css", "build/resources/main/static/js/tailstreamer.js"
         ],
         watch: {
             less: {
-                files: ["less/style.less"],
+                files: ["src/main/resources/static/less/style.less"],
                 tasks: ["less"]
             }
         }
@@ -50,5 +50,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-clean");
 
-    grunt.registerTask("default", ["jshint", "concat", "uglify"]);
+    grunt.registerTask("default", ["jshint", "less", "concat", "uglify"]);
 };

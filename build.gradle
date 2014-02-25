@@ -37,18 +37,24 @@ dependencies {
     testCompile 'org.mockito:mockito-core:1.9.5'
 }
 
-lesscss {
-    source = fileTree('src/main/resources/static/less')
-    dest = 'src/main/resources/static/css'
-    compress = true
-}
-
-clean {
-    dependsOn 'cleanLesscss'
+sourceSets {
+    main {
+        resources {
+            exclude "static/less"
+            exclude "static/js"
+        }
+    }
 }
 
 processResources {
-    dependsOn 'lesscss'
+    dependsOn 'gruntBuild'
+}
+
+task gruntBuild(type: GruntTask) {
+}
+
+task gruntClean(type: GruntTask) {
+    gruntArgs = 'clean'
 }
 
 task wrapper(type: Wrapper) {
