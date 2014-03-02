@@ -2,3 +2,6 @@ language: java
 
 before_install:
  - chmod +x gradlew
+ 
+before_script:
+ - npm install -g grunt-cli
