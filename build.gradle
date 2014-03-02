@@ -3,10 +3,12 @@ buildscript {
         maven { url 'http://repo.spring.io/libs-snapshot' }
         mavenCentral()
         mavenLocal()
+        jcenter()
     }
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC3'
         classpath 'de.obqo.gradle:gradle-lesscss-plugin:1.0-1.3.3'
+        classpath 'com.moowork.gradle:gradle-grunt-plugin:0.4'
     }
 }
 
@@ -16,6 +18,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'spring-boot'
+apply plugin: 'grunt'
 
 version = '0.1'
 mainClassName = 'net.thinksincode.tailstreamer.TailStreamer'
@@ -47,14 +50,7 @@ sourceSets {
 }
 
 processResources {
-    dependsOn 'gruntBuild'
-}
-
-task gruntBuild(type: GruntTask) {
-}
-
-task gruntClean(type: GruntTask) {
-    gruntArgs = 'clean'
+    dependsOn 'grunt_default'
 }
 
 task wrapper(type: Wrapper) {
