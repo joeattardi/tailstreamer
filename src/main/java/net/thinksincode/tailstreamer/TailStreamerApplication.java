@@ -18,8 +18,8 @@ public class TailStreamerApplication extends SpringApplication {
     }
     
     @Override
-    protected void addPropertySources(ConfigurableEnvironment environment, String[] args) {
-        super.addPropertySources(environment, args);
+    protected void configurePropertySources(ConfigurableEnvironment environment, String[] args) {
+        super.configurePropertySources(environment, args);
         MutablePropertySources sources = environment.getPropertySources();
         sources.addFirst(new JOptCommandLinePropertySource(options));
     }    
