@@ -16,7 +16,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'lesscss'
 
 version = '0.1'
-mainClassName = 'net.thinksincode.tailstreamer.TailStreamer'
+mainClassName = 'com.thinksincode.tailstreamer.TailStreamer'
 
 repositories {
     mavenCentral()
