@@ -27,6 +27,7 @@ dependencies {
     compile 'net.sf.jopt-simple:jopt-simple:4.6'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-websocket'
+    compile 'org.springframework.boot:spring-boot-starter-security'
     compile 'org.springframework:spring-messaging'
     compile 'org.thymeleaf:thymeleaf-spring4'
     testCompile 'junit:junit:4.11'
