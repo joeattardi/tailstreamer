@@ -4,6 +4,12 @@
     box-shadow:         @string;
 }
 
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
 .gradient (@startColor: #eee, @endColor: white) {
     background-color: @startColor;
     background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
@@ -66,7 +72,7 @@ header {
             float: right;
             input {
                 border: 1px solid #AAAAAA;    
-                border-radius: 5px;
+                .border-radius(5px);
                 font-size: 11px;
                 padding: 3px;            
             }
@@ -89,7 +95,7 @@ header {
     font-family: Courier New, Courier, monospace;
     font-size: 12px;
     padding: 5px;
-    border-radius: 5px;
+    .border-radius(5px);
     border: 1px solid #CCCCCC;
     overflow-y: auto;
     word-wrap: break-word;
@@ -129,5 +135,56 @@ header {
     a:hover {
         color: #CCCCCC;
     }
+}
+
+#loginPage {
+  background: #FFFFFF;
+
+  #loginWindow {
+    width: 400px;
+    border: 1px solid black;
+    margin: 150px auto auto auto;
+    background: #EEEEEE;
+
+    #loginWindowTitle {
+      background: #000000;
+      padding: 10px;
+    }
+
+    #loginForm {
+      padding: 10px 10px 10px 10px;
+      margin: auto;
+      width: 250px;
+
+      input {
+        border: 1px solid #CCCCCC;
+        font-size: 1.3em;
+        padding: 5px;
+        .border-radius(3px);
+      }
+
+      #submit {
+        margin-top: 10px;
+        padding: 10px 30px 10px 30px;
+        background: #02779e;
+        .border-radius(5px);
+        .gradient(#02779E, lighten(#02779E, 2%));
+        color: #FFFFFF;
+        display: block;
+        border: 1px solid darken(#02779E, 10%);
+      }
+
+      #loginError {
+        color: #BD0000;
+        font-weight: bold;
+        margin: 10px 0px 10px 0px;
+      }
+
+      #loggedOut {
+        font-weight: bold;
+        margin: 10px 0px 10px 0px;
+      }
+    }
+  }
 }
 
