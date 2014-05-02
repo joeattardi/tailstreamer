@@ -1,5 +1,6 @@
 package com.thinksincode.tailstreamer;
 
+import joptsimple.OptionSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -31,24 +32,28 @@ public class TailStreamer implements CommandLineRunner {
     public static void main(String...args) {
         ArgumentProcessor argumentProcessor = new ArgumentProcessor();
         if (argumentProcessor.parseArguments(args) && argumentProcessor.validateArguments()) {
-            if (argumentProcessor.getOptions().has("h")) {
+            OptionSet options = argumentProcessor.getOptions();
+            if (options.has("h")) {
                 System.out.println(getHelpText());
+            } else if (options.has("v")) {
+                System.out.println("TailStreamer version " + VERSION);
             } else {
                 TailStreamerApplication app = new TailStreamerApplication(TailStreamer.class, argumentProcessor.getOptions());
                 app.run(args);
             }
         } else {
             System.err.println(argumentProcessor.getValidationErrorMessage());
+            System.out.println(getHelpText());
             System.exit(1);
         }
     }   
     
     public static String getHelpText() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Usage: tailstreamer [options] file");
-        builder.append("  -h                     Print this message");
-        builder.append("     --server.port=PORT  Listen on PORT (default 8080)");
-        
-        return builder.toString();
+        return new StringBuilder()
+        .append("Usage: tailstreamer [options] file\n")
+        .append("  -h                     Print this message\n")
+        .append("  -v                     Display version information\n")
+        .append("  --server.port=PORT     Listen on PORT (default 8080)\n")
+        .toString();
     }
 }

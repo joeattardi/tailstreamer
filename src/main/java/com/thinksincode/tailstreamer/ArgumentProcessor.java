@@ -35,13 +35,14 @@ public class ArgumentProcessor {
         OptionParser parser = new OptionParser();
         parser.accepts("server.port").withRequiredArg();
         parser.accepts("h");
+        parser.accepts("v");
         parser.nonOptions("file to watch");
         
         try {
             options = parser.parse(args);
             return true;
         } catch (OptionException oe) {
-            String firstOption = new ArrayList<String>(oe.options()).get(0);
+            String firstOption = new ArrayList<>(oe.options()).get(0);
             validationErrorMessage = String.format(MESSAGE_INVALID_OPTION, firstOption);
             return false;
         }
@@ -58,7 +59,7 @@ public class ArgumentProcessor {
             throw new IllegalStateException("No arguments have been parsed");
         }
         List<?> nonOptionArgs = options.nonOptionArguments();
-        if (options.has("h")) {
+        if (options.has("h") || options.has("v")) {
             return true;
         } else if (nonOptionArgs.isEmpty()) {
             validationErrorMessage = MESSAGE_NO_FILE_SPECIFIED;
