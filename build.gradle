@@ -48,12 +48,12 @@ sourceSets {
     }
 }
 
-clean {
-    dependsOn 'cleanLesscss'
+clean.dependsOn {
+    tasks.cleanLesscss
 }
 
-processResources {
-    dependsOn 'lesscss'
+processResources.dependsOn {
+    tasks.lesscss
 }
 
 task wrapper(type: Wrapper) {
