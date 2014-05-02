@@ -71,6 +71,6 @@ public class TailStreamerTests {
     @Test
     public void testHelpText() {
         TailStreamer.main("-h");
-        Assert.assertEquals(TailStreamer.getHelpText(), stdout.getLog().trim());
+        Assert.assertEquals(TailStreamer.getHelpText().trim(), stdout.getLog().trim());
     }
 }
