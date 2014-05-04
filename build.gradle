@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.0.1.RELEASE'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE'
         classpath 'de.obqo.gradle:gradle-lesscss-plugin:1.0-1.3.3'
     }
 }

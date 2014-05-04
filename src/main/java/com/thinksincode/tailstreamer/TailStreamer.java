@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableAsync
@@ -37,6 +38,9 @@ public class TailStreamer implements CommandLineRunner {
                 System.out.println(getHelpText());
             } else if (options.has("v")) {
                 System.out.println("TailStreamer version " + VERSION);
+            } else if (options.has("encryptPassword")) {
+                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+                System.out.println(encoder.encode((String) options.nonOptionArguments().get(0)));
             } else {
                 TailStreamerApplication app = new TailStreamerApplication(TailStreamer.class, argumentProcessor.getOptions());
                 app.run(args);
@@ -53,6 +57,7 @@ public class TailStreamer implements CommandLineRunner {
         .append("Usage: tailstreamer [options] file\n")
         .append("  -h                     Print this message\n")
         .append("  -v                     Display version information\n")
+        .append("  --encryptPassword      Encrypts a specified password\n")
         .append("  --server.port=PORT     Listen on PORT (default 8080)\n")
         .toString();
     }

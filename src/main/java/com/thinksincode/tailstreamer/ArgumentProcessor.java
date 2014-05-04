@@ -34,6 +34,7 @@ public class ArgumentProcessor {
     public boolean parseArguments(String...args) {
         OptionParser parser = new OptionParser();
         parser.accepts("server.port").withRequiredArg();
+        parser.accepts("encryptPassword");
         parser.accepts("h");
         parser.accepts("v");
         parser.nonOptions("file to watch");
@@ -61,18 +62,27 @@ public class ArgumentProcessor {
         List<?> nonOptionArgs = options.nonOptionArguments();
         if (options.has("h") || options.has("v")) {
             return true;
+        } else if (options.has("encryptPassword")) {
+            if (nonOptionArgs.isEmpty()) {
+                validationErrorMessage = "No password specified";
+                return false;
+            }
         } else if (nonOptionArgs.isEmpty()) {
             validationErrorMessage = MESSAGE_NO_FILE_SPECIFIED;
             return false;
         } 
-        
-        String filePath = (String) nonOptionArgs.get(0);
-        if (!new File(filePath).exists()) {
-            validationErrorMessage = String.format(MESSAGE_FILE_NOT_FOUND, nonOptionArgs.get(0));
-            return false;
-        } else if (!Files.isReadable(Paths.get(filePath))) {
-            validationErrorMessage = String.format(MESSAGE_READ_PERMISSION, nonOptionArgs.get(0));
-            return false;
+
+        if (options.has("encryptPassword")) {
+            return true;
+        } else {
+            String filePath = (String) nonOptionArgs.get(0);
+            if (!new File(filePath).exists()) {
+                validationErrorMessage = String.format(MESSAGE_FILE_NOT_FOUND, nonOptionArgs.get(0));
+                return false;
+            } else if (!Files.isReadable(Paths.get(filePath))) {
+                validationErrorMessage = String.format(MESSAGE_READ_PERMISSION, nonOptionArgs.get(0));
+                return false;
+            }
         }
         
         return true;
