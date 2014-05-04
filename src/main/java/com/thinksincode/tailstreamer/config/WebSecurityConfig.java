@@ -30,27 +30,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/css/*.css", "/fonts/*", "/logo.png", "/favicon.png").permitAll()
-                .anyRequest().authenticated()
-            .and()
-                .formLogin()
+        if (!users.isEmpty()) {
+            http
+                    .authorizeRequests()
+                    .antMatchers("/css/*.css", "/fonts/*", "/logo.png", "/favicon.png").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                    .formLogin()
                     .loginPage("/login")
                     .permitAll()
                     .and()
-                .logout()
+                    .logout()
                     .permitAll();
+        }
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> configurer = auth.inMemoryAuthentication();
-        configurer.passwordEncoder(encoder);
+        if (!users.isEmpty()) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> configurer = auth.inMemoryAuthentication();
+            configurer.passwordEncoder(encoder);
 
-        for (User user : users) {
-            configurer.withUser(user.getUsername()).password(user.getPassword()).roles("USER");
+            for (User user : users) {
+                configurer.withUser(user.getUsername()).password(user.getPassword()).roles("USER");
+            }
         }
     }
 }
