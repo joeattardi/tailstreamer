@@ -1,0 +1,9 @@
+# Sample TailStreamer configuration file
+# Sample user password is "password"
+
+auth:
+  users:
+    - username: user
+      password: $2a$10$5dVFvqUogL2uybh/OsDZyOncW1qk06Jen1gQwTBsx4GKuz4XX83PK
+server:
+  port: 8080
