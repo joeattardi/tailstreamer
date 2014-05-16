@@ -32,7 +32,7 @@ $(function() {
          * case-insensitive.
          */
         function fixContains() {
-            jQuery.expr[':'].contains = function(a, i, m) {
+            $.expr[':'].contains = function(a, i, m) {
                 return jQuery(a).text().toUpperCase()
                     .indexOf(m[3].toUpperCase()) >= 0;
             };
@@ -43,9 +43,8 @@ $(function() {
          */
         function updateSearch() {
             var searchText = $("#searchText").val();
-            $("#logContent :not(:contains(" + searchText + "))").hide();
-            $("#logContent :contains(" + searchText + ")").show();
-
+            logContent.find(":not(:contains(" + searchText + "))").hide();
+            logContent.find(":contains(" + searchText + ")").show();
             logContent.removeHighlight();
             logContent.highlight(searchText);
             logContent.scrollTop(logContent[0].scrollHeight);
