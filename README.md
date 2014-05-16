@@ -20,7 +20,36 @@ By default, TailStreamer runs on port 8080:
 You can specify an alternate port with the `--server.port` argument:
 
     tailstreamer --server.port=8000 /var/log/httpd-access.log
+
+You can also specify the server port in `application.yml`:
+
+    server:
+        port: 9000
+
+# Configuration
+TailStreamer is configured using YAML. Upon startup, it will look for a file called `application.yml` and read
+configuration properties from there.
+
+# Security
+By default, TailStreamer is accessible by anyone. You can restrict access by requiring a username and password. 
+Authentication is configured in `application.yml`. For security purposes, user passwords are stored hashed. 
+
+The first step is getting the hashed password. Run TailStreamer with the `--encryptPassword` option to generate
+the hashed password:
+
+    tailstreamer --encryptPassword myPassword
     
+The hashed password will be displayed:
+
+Copy this password to your clipboard, then edit `application.yml` and add it under `auth`: `users`:
+
+    auth:
+        users:
+            - username: joe
+              password: $2a$10$mAlhv2g41/NObkGOSVLvO.ayoFdN7kqnV61Km8PSJ8qjcYnK5q2ke
+        
+Now, when starting TailStreamer, you will be prompted to log in before viewing the log.
+
 # Screenshots
 ![Screenshot](https://raw.github.com/joeattardi/tailstreamer/gh-pages/screenshot.png)
 ![Screenshot](https://raw.github.com/joeattardi/tailstreamer/gh-pages/screenshot_search.png)
