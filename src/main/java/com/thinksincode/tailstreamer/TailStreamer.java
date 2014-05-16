@@ -55,10 +55,10 @@ public class TailStreamer implements CommandLineRunner {
     public static String getHelpText() {
         return new StringBuilder()
         .append("Usage: tailstreamer [options] file\n")
-        .append("  -h                     Print this message\n")
-        .append("  -v                     Display version information\n")
-        .append("  --encryptPassword      Encrypts a specified password\n")
-        .append("  --server.port=PORT     Listen on PORT (default 8080)\n")
+        .append("  -h                           Print this message\n")
+        .append("  -v                           Display version information\n")
+        .append("  --encryptPassword <password> Encrypts a specified password\n")
+        .append("  --server.port=PORT           Listen on PORT (default 8080)\n")
         .toString();
     }
 }
