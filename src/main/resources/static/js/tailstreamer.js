@@ -146,7 +146,7 @@ $(function() {
         function updateLog(content) {
             // If we're scrolled down all the way, then automatically scroll to the bottom after appending
             // the new log entry. If not, that means the user scrolled up, so in that case we won't autoscroll.
-            var autoscroll = logContent.scrollTop() + logContent.innerHeight() == logContent[0].scrollHeight;
+            var autoscroll = (logContent.scrollTop() + logContent.innerHeight()) === logContent[0].scrollHeight;
 
             JSON.parse(content.body).forEach(function(message) {
                addLogMessage(message);
@@ -202,7 +202,7 @@ $(function() {
             });
         }
 
-        function setTooltips() {
+        function initTooltips() {
             $.fn.qtip.defaults.style.classes = "qtip-light";
 
             clearButton.qtip({content: "Clear contents <span class=\"shortcut\">Alt+C</span>"});
@@ -219,6 +219,22 @@ $(function() {
             });
         }
 
+        function initButtons() {
+            var jumpToBottomButton = $("#jumpToBottomButton");
+
+            jumpToBottomButton.click(function(e) {
+                logContent.scrollTop(logContent[0].scrollHeight);
+            });
+
+            logContent.on("scroll", function(e) {
+                if (logContent.scrollTop() + logContent.innerHeight() !== logContent[0].scrollHeight) {
+                    jumpToBottomButton.fadeIn();
+                } else {
+                    jumpToBottomButton.fadeOut();
+                }
+            });
+        }
+
         function bindEventListeners() {
             $(window).resize(sizeLogContentArea);
             clearButton.click(clearLog);
@@ -228,7 +244,8 @@ $(function() {
 
         return {
             init: function() {
-                setTooltips();
+                initButtons();
+                initTooltips();
                 sizeLogContentArea();
                 fixContains();
                 bindEventListeners();

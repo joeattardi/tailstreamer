@@ -90,22 +90,42 @@ header {
     }
 }
 
-#logContent {
+#mainContent {
+  position: relative;
+
+  #jumpToBottomButton {
+    position: absolute;
+    display: none;
+    bottom: 10px;
+    right: 50px;
+    padding: 5px;
+    font-weight: bold;
+    background: #02779e;
+    .border-radius(5px);
+    .gradient(#02779E, lighten(#02779E, 2%));
+    color: #FFFFFF;
+    border: 1px solid darken(#02779E, 10%);
+  }
+
+  #logContent {
     margin: 90px 10px 10px 10px;
     font-family: Courier New, Courier, monospace;
     font-size: 12px;
     padding: 5px;
-    .border-radius(5px);
     border: 1px solid #CCCCCC;
     overflow-y: auto;
     word-wrap: break-word;
     background: #FFFFFF;
+    .border-radius(5px);
     .box-shadow(inset 0px 0px 10px #ccc);
-    
+
     .highlight {
-        background: yellow;
+      background: yellow;
     }
+  }
 }
+
+
 
 @-webkit-keyframes pulse {
     0% { opacity: 0; }
