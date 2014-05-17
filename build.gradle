@@ -17,6 +17,7 @@ apply plugin: 'lesscss'
 
 version = '0.2.0'
 mainClassName = 'com.thinksincode.tailstreamer.TailStreamer'
+sourceCompatibility = JavaVersion.VERSION_1_7
 
 repositories {
     mavenCentral()
