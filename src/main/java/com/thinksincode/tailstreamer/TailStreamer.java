@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableAutoConfiguration
 @ComponentScan
 public class TailStreamer implements CommandLineRunner {
-    public static final String VERSION = "0.2.1";
+    public static final String VERSION = "0.3.0";
 
     @Autowired
     private FileTailService fileTailService;
@@ -31,6 +31,9 @@ public class TailStreamer implements CommandLineRunner {
     }
 
     public static void main(String...args) {
+        System.setProperty("spring.config.name", "tailstreamer");
+        System.setProperty("spring.config.location", "../conf/");
+
         ArgumentProcessor argumentProcessor = new ArgumentProcessor();
         if (argumentProcessor.parseArguments(args) && argumentProcessor.validateArguments()) {
             OptionSet options = argumentProcessor.getOptions();

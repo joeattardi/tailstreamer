@@ -8,7 +8,9 @@
         <script src="js/vendor/sockjs.min.js"></script>
         <script src="js/vendor/stomp.min.js"></script>
         <script src="js/tailstreamer.js"></script>
-        
+
+        <link href="http://fonts.googleapis.com/css?family=Cabin+Condensed:700" rel="stylesheet" type="text/css" />
+        <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/jquery.qtip.min.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -24,7 +26,8 @@
                 <a href="#" id="reconnectLink">retry</a>
             </div>
             <div id="banner">
-                <span th:text="${file}" id="filename"></span>
+                TailStreamer
+                <!--<span th:text="${file}" id="filename"></span>-->
             </div>
             <div id="toolbar">
                 <a href="#" accesskey="C" id="clearButton"><i class="fa fa-ban"></i></a>
@@ -40,5 +43,8 @@
             <div id="logContent"></div>
             <button id="jumpToBottomButton">Jump to bottom</button>
         </div>
+        <footer>
+            <a href="http://www.github.com/joeattardi/tailstreamer">TailStreamer</a> version <b th:text="${version}"></b>
+        </footer>
     </body>
 </html>

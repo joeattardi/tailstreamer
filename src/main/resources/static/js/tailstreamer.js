@@ -54,7 +54,7 @@ $(function() {
          * Recalculates the proper size of the log content area.
          */
         function sizeLogContentArea() {
-            logContent.height($(window).height() - 115);
+            logContent.height($(window).height() - 112);
         }
 
         /**

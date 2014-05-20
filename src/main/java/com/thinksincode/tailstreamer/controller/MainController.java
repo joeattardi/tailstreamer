@@ -1,7 +1,7 @@
 package com.thinksincode.tailstreamer.controller;
 
 import com.thinksincode.tailstreamer.FileTailService;
-
+import com.thinksincode.tailstreamer.TailStreamer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +16,7 @@ public class MainController {
     @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("file", fileTailService.getFile());
+        model.addAttribute("version", TailStreamer.VERSION);
         return "index";
     }
 }

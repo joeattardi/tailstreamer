@@ -15,10 +15,9 @@ apply plugin: 'application'
 apply plugin: 'spring-boot'
 apply plugin: 'lesscss'
 
-version = '0.2.1'
+version = '0.3.0'
 mainClassName = 'com.thinksincode.tailstreamer.TailStreamer'
 sourceCompatibility = JavaVersion.VERSION_1_7
-applicationDefaultJvmArgs = ["-Dspring.config.location=file:../conf/tailstreamer.yml"]
 
 repositories {
     mavenCentral()
