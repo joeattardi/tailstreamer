@@ -1,5 +1,16 @@
+var $ = require('jquery');
+window.jQuery = $;
+
+var SockJS = require('sockjs-client');
+var Stomp = require('stompjs');
+
+require('jquery-highlight');
+require('qtip2');
+
 $(function() {
     "use strict";
+
+    var jQuery = $;
 
     var TailStreamer = (function($) {
         var NOTIFICATION_DURATION = 200;

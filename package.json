@@ -1,0 +1,15 @@
+{
+  "name": "tailstreamer",
+  "dependencies": {
+    "component-tip": "^2.3.1",
+    "jquery": "^2.1.3",
+    "jquery-highlight": "^3.2.2",
+    "qtip2": "^2.2.0",
+    "sockjs-client": "^1.0.0-beta.10",
+    "stompjs": "^2.3.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-browserify": "^0.5.1"
+  }
+}
