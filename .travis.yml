@@ -1,6 +1,5 @@
 language: java
 
 before_install:
- - npm install
  - chmod +x gradlew
 
