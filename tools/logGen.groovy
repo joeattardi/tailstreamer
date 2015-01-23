@@ -23,6 +23,6 @@ def getLine() {
 }
 
 while (true) {
-    sleep rnd.nextInt(500) + 250
+    sleep rnd.nextInt(250)
     println getLine()
 }
