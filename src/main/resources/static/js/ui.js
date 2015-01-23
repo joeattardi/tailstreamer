@@ -83,10 +83,10 @@ function bindEventListeners() {
  */
 function updateSearch() {
     var searchText = $("#searchText").val();
-    var $logContent = $("$logContent");
+    var $logContent = $("#logContent");
     $logContent.find(":not(:contains(" + searchText + "))").hide();
     $logContent.find(":contains(" + searchText + ")").show();
-    $logContent.removeHighlight();
+    $logContent.unhighlight();
     $logContent.highlight(searchText);
     $logContent.scrollTop($logContent[0].scrollHeight);
 }
