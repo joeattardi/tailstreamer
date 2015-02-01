@@ -1,6 +1,8 @@
 @import 'mixins';
 @import 'fonts';
 
+@button-color: #02779e;
+
 body {
     margin: 0;
     padding: 0;
@@ -103,11 +105,11 @@ footer {
     right: 50px;
     padding: 5px;
     font-weight: bold;
-    background: #02779e;
-    .border-radius(5px);
-    .gradient(#02779E, lighten(#02779E, 2%));
+    background: @button-color;
+    .border-radius(2px);
     color: #FFFFFF;
-    border: 1px solid darken(#02779E, 10%);
+    border: 1px solid darken(@button-color, 5%);
+    border-bottom-width: 2px;
   }
 
   #logContent {
