@@ -4,7 +4,9 @@
 "use strict";
 
 var $ = require('jquery');
+var hotkeys = require('hotkeys');
 require('qtip2');
+var is = require('is_js');
 
 var socket = require('./socket');
 
@@ -13,16 +15,21 @@ var MAX_LINES = 5000;
 
 var NOTIFICATION_DURATION = 200;
 
+/** The hotkey dispatcher */
+var dispatcher;
+
 function initTooltips() {
     $.fn.qtip.defaults.style.classes = "qtip-light";
 
-    $("#clearButton").qtip({content: "Clear contents <span class=\"shortcut\">Alt+C</span>"});
+    var hotkeyModifier = is.mac() ? "&#8984;" : "Alt";
+
+    $("#clearButton").qtip({content: "Clear contents <span class=\"shortcut\">" + hotkeyModifier + "+C</span>"});
     $("#filterButton").qtip({content: "Configure filters"});
     $("#highlightButton").qtip({content: "Configure highlighting"});
 
     var $searchField = $("#searchText");
     $searchField.qtip({
-        content: "Search <span class=\"shortcut\">Alt+S</span>",
+        content: "Search <span class=\"shortcut\">" + hotkeyModifier + "+S</span>",
         position: {
             my: "top center",
             at: "bottom center",
@@ -76,6 +83,26 @@ function bindEventListeners() {
     $("#clearButton").click(clearLog);
     $("#searchText").on("keyup click", updateSearch);
     $("#reconnectLink").hide().click(retryConnection);
+}
+
+function bindHotkeys() {
+    dispatcher = new hotkeys.Dispatcher();
+
+    var searchHotkey = 'alt s';
+    var clearHotkey = 'alt c';
+
+    if (is.mac()) {
+        searchHotkey = 'cmd s';
+        clearHotkey = 'cmd c';
+    }
+
+    dispatcher.on(searchHotkey, function() {
+        $('#searchText').focus();
+    });
+
+    dispatcher.on(clearHotkey, function() {
+        $('#clearButton').click();
+    });
 }
 
 /**
@@ -180,6 +207,7 @@ $(document).ready(function() {
     initButtons();
     initTooltips();
     bindEventListeners();
+    bindHotkeys();
 
     socket.onConnectionStateChange(setConnectionState);
     socket.onLogMessage(addLogMessage);
