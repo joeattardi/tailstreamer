@@ -23,7 +23,7 @@ function initTooltips() {
 
     var hotkeyModifier = is.mac() ? "&#8984;" : "Alt";
 
-    $("#clearButton").qtip({content: "Clear contents <span class=\"shortcut\">" + hotkeyModifier + "+C</span>"});
+    $("#clearButton").qtip({content: "Clear contents <span class=\"shortcut\">" + hotkeyModifier + "+X</span>"});
     $("#filterButton").qtip({content: "Configure filters"});
     $("#highlightButton").qtip({content: "Configure highlighting"});
 
@@ -34,6 +34,16 @@ function initTooltips() {
             my: "top center",
             at: "bottom center",
             target: $searchField
+        }
+    });
+
+    var $jumpToBottomButton = $('#jumpToBottomButton');
+    $jumpToBottomButton.qtip({
+        content: "Jump to bottom",
+        position: {
+            my: "right center",
+            at: "left center",
+            target: $jumpToBottomButton
         }
     });
 }
@@ -87,21 +97,14 @@ function bindEventListeners() {
 
 function bindHotkeys() {
     dispatcher = new hotkeys.Dispatcher();
+    var hotkeyModifier = is.mac() ? "cmd" : "alt";
 
-    var searchHotkey = 'alt s';
-    var clearHotkey = 'alt c';
-
-    if (is.mac()) {
-        searchHotkey = 'cmd s';
-        clearHotkey = 'cmd c';
-    }
-
-    dispatcher.on(searchHotkey, function() {
-        $('#searchText').focus();
+    dispatcher.on(hotkeyModifier + " s", function() {
+        $("#searchText").focus();
     });
 
-    dispatcher.on(clearHotkey, function() {
-        $('#clearButton').click();
+    dispatcher.on(hotkeyModifier + " x", function() {
+        $("#clearButton").click();
     });
 }
 
