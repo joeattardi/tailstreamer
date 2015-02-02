@@ -6,8 +6,12 @@ TailStreamer
 TailStreamer is a browser-based log viewer. It's `tail -f` for the web. Built on top of the [Spring Framework](https://github.com/spring-projects/spring-framework), it uses [SockJS](https://github.com/sockjs/sockjs-client) to stream log updates in real-time to your browser.
 
 # Requirements
-* Java 7 or later
-* Node.js
+To run TailStreamer, you need:
+* a Java Runtime Environment - Java 7 or later.
+
+To build TailStreamer, you need:
+* a Java Development Kit - Java 7 or later.
+* Node.js.
 
 # Building
 1. Download and install Node.js
