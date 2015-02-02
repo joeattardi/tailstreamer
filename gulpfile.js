@@ -4,6 +4,9 @@ var browserify = require('browserify');
 var LessPluginCleanCSS = require('less-plugin-clean-css');
 var cleancss = new LessPluginCleanCSS({advanced: true});
 var source = require('vinyl-source-stream');
+var uglify = require('gulp-uglify');
+var streamify = require('gulp-streamify');
+var gutil = require('gulp-util');
 
 gulp.task('browserify', function() {
     browserify({
@@ -12,6 +15,7 @@ gulp.task('browserify', function() {
     })
         .bundle()
         .pipe(source('tailstreamer.js'))
+        .pipe(gutil.env.devel ? gutil.noop() : streamify(uglify()))
         .pipe(gulp.dest('build/resources/main/static/js'));
 });
 
