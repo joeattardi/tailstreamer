@@ -6,13 +6,15 @@ TailStreamer
 TailStreamer is a browser-based log viewer. It's `tail -f` for the web. Built on top of the [Spring Framework](https://github.com/spring-projects/spring-framework), it uses [SockJS](https://github.com/sockjs/sockjs-client) to stream log updates in real-time to your browser.
 
 # Requirements
-TailStreamer requires Java 7 or later.
+* Java 7 or later
+* Node.js
 
 # Building
-All you need to build TailStreamer is a Java Development Kit (JDK). The included Gradle wrapper will download Gradle if you don't already have it. Simply run:
+1. Download and install Node.js
+2. Go to your TailStreamer directory
+3. Run `npm install` to download the necessary JavaScript components
+4. Start the build by running `./gradlew installApp`.
 
-    ./gradlew installApp
-    
 This will download Gradle, then build TailStreamer. The binaries will be under `build/install/tailstreamer/bin`.
 
 # Usage
@@ -30,12 +32,14 @@ You can also specify the server port in `application.yml`:
         port: 9000
 
 # Configuration
-TailStreamer is configured using YAML. Upon startup, it will look for a file called `application.yml` and read
+TailStreamer is configured using YAML. Upon startup, it will look for a file called `tailstreamer.yml` and read
 configuration properties from there.
+
+For a full reference of available configuration options, see the wiki page at https://github.com/joeattardi/tailstreamer/wiki/YAML-Configuration-Reference.
 
 # Security
 By default, TailStreamer is accessible by anyone. You can restrict access by requiring a username and password. 
-Authentication is configured in `application.yml`. For security purposes, user passwords are stored hashed. 
+Authentication is configured in `tailstreamer.yml`. For security purposes, user passwords are stored hashed. 
 
 The first step is getting the hashed password. Run TailStreamer with the `--encryptPassword` option to generate
 the hashed password:
