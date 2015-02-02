@@ -8,6 +8,10 @@ var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var gutil = require('gulp-util');
 
+if (gutil.env.devel) {
+    gutil.log('Building in development mode');
+}
+
 gulp.task('browserify', function() {
     browserify({
         entries: ['./src/main/resources/static/js/tailstreamer.js'],
