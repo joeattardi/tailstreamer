@@ -1,15 +1,18 @@
 var gulp = require('gulp');
 var less = require('gulp-less');
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
 var LessPluginCleanCSS = require('less-plugin-clean-css');
 var cleancss = new LessPluginCleanCSS({advanced: true});
+var source = require('vinyl-source-stream');
 
 gulp.task('browserify', function() {
-    gulp.src('src/main/resources/static/js/tailstreamer.js')
-        .pipe(browserify({
-            debug: true
-        }))
-        .pipe(gulp.dest('build/resources/main/static/js'))
+    browserify({
+        entries: ['./src/main/resources/static/js/tailstreamer.js'],
+        debug: true
+    })
+        .bundle()
+        .pipe(source('tailstreamer.js'))
+        .pipe(gulp.dest('build/resources/main/static/js'));
 });
 
 gulp.task('less', function() {
