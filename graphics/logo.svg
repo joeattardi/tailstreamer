@@ -163,7 +163,8 @@
        y1="273.70468"
        x2="435.97635"
        y2="-4.316433"
-       gradientUnits="userSpaceOnUse" />
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1.0101525,-35.355339)" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4074"
@@ -179,7 +180,7 @@
        xlink:href="#linearGradient4074"
        id="linearGradient3895"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.97406267,0,0,0.97406267,-124.68243,-333.65693)"
+       gradientTransform="matrix(0.97406267,0,0,0.97406267,-125.69258,-369.01227)"
        x1="211.3744"
        y1="415.43524"
        x2="211.3744"
@@ -192,9 +193,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="-71.859195"
-     inkscape:cy="479.73162"
+     inkscape:zoom="0.7"
+     inkscape:cx="-85.470273"
+     inkscape:cy="580.50613"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -293,7 +294,7 @@
          inkscape:export-xdpi="39.490967"
          inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
          transform="translate(-83.392864,-26.964289)"
-         d="m 167.50001,85.040756 a 21.964285,21.964285 0 1 1 -43.92857,0 21.964285,21.964285 0 1 1 43.92857,0 z"
+         d="m 167.50001,85.040756 c 0,12.13054 -9.83375,21.964284 -21.96429,21.964284 -12.13054,0 -21.96428,-9.833744 -21.96428,-21.964284 0,-12.130539 9.83374,-21.964285 21.96428,-21.964285 12.13054,0 21.96429,9.833746 21.96429,21.964285 z"
          sodipodi:ry="21.964285"
          sodipodi:rx="21.964285"
          sodipodi:cy="85.040756"
@@ -338,7 +339,7 @@
          inkscape:export-xdpi="39.490967"
          inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
          transform="translate(-83.214287,-27.142857)"
-         d="m 167.50001,85.040756 a 21.964285,21.964285 0 1 1 -43.92857,0 21.964285,21.964285 0 1 1 43.92857,0 z"
+         d="m 167.50001,85.040756 c 0,12.13054 -9.83375,21.964284 -21.96429,21.964284 -12.13054,0 -21.96428,-9.833744 -21.96428,-21.964284 0,-12.130539 9.83374,-21.964285 21.96428,-21.964285 12.13054,0 21.96429,9.833746 21.96429,21.964285 z"
          sodipodi:ry="21.964285"
          sodipodi:rx="21.964285"
          sodipodi:cy="85.040756"
@@ -369,8 +370,8 @@
        id="rect4000-1-9"
        width="111.32145"
        height="111.32145"
-       x="21.36697"
-       y="147.21695"
+       x="20.356817"
+       y="111.86161"
        rx="5.9972482"
        ry="5.9972482"
        inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
@@ -378,7 +379,7 @@
        inkscape:export-ydpi="37.799999" />
     <path
        style="opacity:0.51769912;fill:url(#linearGradient3895);fill-opacity:1;stroke:none"
-       d="m 27.36572,147.21695 c -3.32248,0 -5.99658,2.67409 -5.99658,5.99657 l 0,53.81697 c 17.10499,2.88817 35.62457,4.4746 54.97366,4.4746 19.8645,0 38.8449,-1.69036 56.34344,-4.71812 l 0,-53.57345 c 0,-3.32248 -2.67409,-5.99657 -5.99657,-5.99657 l -99.32395,0 z"
+       d="m 26.355567,111.86161 c -3.32248,0 -5.99658,2.67409 -5.99658,5.99657 l 0,53.81697 c 17.10499,2.88817 35.62457,4.4746 54.97366,4.4746 19.8645,0 38.844903,-1.69036 56.343443,-4.71812 l 0,-53.57345 c 0,-3.32248 -2.67409,-5.99657 -5.99657,-5.99657 l -99.323953,0 z"
        id="rect4000-1"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
@@ -387,7 +388,7 @@
     <path
        id="path4008"
        style="fill:none;stroke:#ffffff;stroke-width:14.61093998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 86.55915,214.24102 25.27634,25.27634 m -18.06244,-47.5028 c 0,14.236 -11.54056,25.77658 -25.77657,25.77658 -14.236,0 -25.77657,-11.54058 -25.77657,-25.77658 0,-14.236 11.54057,-25.77657 25.77657,-25.77657 14.23601,0 25.77657,11.54057 25.77657,25.77657 z"
+       d="m 85.548997,178.88568 25.276343,25.27634 m -18.062443,-47.5028 c 0,14.236 -11.54056,25.77658 -25.77657,25.77658 -14.236,0 -25.77657,-11.54058 -25.77657,-25.77658 0,-14.236 11.54057,-25.77657 25.77657,-25.77657 14.23601,0 25.77657,11.54057 25.77657,25.77657 z"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
        inkscape:export-xdpi="37.799999"
@@ -403,11 +404,11 @@
            x="142.85715"
            y="152.36218"
            style="-inkscape-font-specification:Changa One;font-family:Changa One;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal" /></flowRegion><flowPara
-         id="flowPara3038"></flowPara></flowRoot>    <text
+         id="flowPara3038" /></flowRoot>    <text
        xml:space="preserve"
-       style="font-size:94.24604033999999300px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3880);fill-opacity:1;stroke:none;font-family:Sans;stroke-opacity:1"
-       x="147.58563"
-       y="233.9776"
+       style="font-size:94.24604034px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient3880);fill-opacity:1;stroke:none;font-family:Sans"
+       x="146.57549"
+       y="198.62225"
        id="text3040"
        sodipodi:linespacing="125%"
        inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
@@ -415,23 +416,23 @@
        inkscape:export-ydpi="28.296429"><tspan
          sodipodi:role="line"
          id="tspan3042"
-         x="147.58563"
-         y="233.9776"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Changa One;-inkscape-font-specification:Changa One;stroke:none;stroke-opacity:1;fill-opacity:1;fill:url(#linearGradient3880)">TailStreamer</tspan></text>
+         x="146.57549"
+         y="198.62225"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:url(#linearGradient3880);fill-opacity:1;stroke:none;font-family:Changa One;-inkscape-font-specification:Changa One">TailStreamer</tspan></text>
     <rect
        style="fill:#000000;fill-opacity:1;stroke:none"
        id="rect3044"
        width="718.57141"
        height="140.90617"
-       x="4.2857141"
-       y="340.93362"
+       x="11.356782"
+       y="233.85745"
        rx="6.0818868"
        ry="4.2252464" />
     <text
        xml:space="preserve"
        style="font-size:94.24604034px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
-       x="142.97592"
-       y="442.03354"
+       x="150.047"
+       y="334.95737"
        id="text3040-8"
        sodipodi:linespacing="125%"
        inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
@@ -439,12 +440,12 @@
        inkscape:export-ydpi="28.296429"><tspan
          sodipodi:role="line"
          id="tspan3042-6"
-         x="142.97592"
-         y="442.03354"
+         x="150.047"
+         y="334.95737"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:Changa One;-inkscape-font-specification:Changa One">TailStreamer</tspan></text>
     <g
        id="g4082-2"
-       transform="translate(-129.88484,-138.40571)"
+       transform="translate(-122.81377,-245.48188)"
        inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
        inkscape:export-xdpi="28.296429"
        inkscape:export-ydpi="28.296429">
@@ -477,5 +478,64 @@
          style="fill:none;stroke:#ffffff;stroke-width:14.61093998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          id="path4008-5" />
     </g>
+    <path
+       style="fill:#076082;fill-opacity:1;stroke:none"
+       d="m 70.031249,399.10714 c -19.22392,0 -34.97428,10.36437 -36.375,23.5 8.51508,-5.84273 21.64414,-9.59375 36.375,-9.59375 14.73084,0 27.828671,3.75102 36.343751,9.59375 -1.40072,-13.13563 -17.119851,-23.5 -36.343751,-23.5 z m -0.03125,28.5625 c -20.14542,0 -36.46875,11.37976 -36.46875,25.40625 0,14.02648 16.32333,25.40625 36.46875,25.40625 20.1454,0 36.468751,-11.37977 36.468751,-25.40625 0,-14.02649 -16.323351,-25.40625 -36.468751,-25.40625 z"
+       id="path4145-6-4-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\favicon.png"
+       inkscape:export-xdpi="18.141733"
+       inkscape:export-ydpi="18.141733" />
+    <rect
+       style="fill:#076082;fill-opacity:1;stroke:none"
+       id="rect4429"
+       width="718.57141"
+       height="112.85714"
+       x="11.42857"
+       y="516.64789"
+       rx="0"
+       ry="0" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       d="m 70.031249,532.67468 c -19.22392,0 -34.97428,10.36437 -36.375,23.5 8.51508,-5.84273 21.64414,-9.59375 36.375,-9.59375 14.73084,0 27.82867,3.75102 36.343751,9.59375 -1.40072,-13.13563 -17.119851,-23.5 -36.343751,-23.5 z m -0.03125,28.5625 c -20.14542,0 -36.46875,11.37976 -36.46875,25.40625 0,14.02648 16.32333,25.40625 36.46875,25.40625 20.1454,0 36.468751,-11.37977 36.468751,-25.40625 0,-14.02649 -16.323351,-25.40625 -36.468751,-25.40625 z"
+       id="path4145-6-4-2-9"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Joe\devel\projects\tailstreamer\src\main\resources\static\logo.png"
+       inkscape:export-xdpi="39.68504"
+       inkscape:export-ydpi="39.68504" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3057"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3059"><rect
+           id="rect3061"
+           width="501.42856"
+           height="68.571426"
+           x="128.57143"
+           y="406.64789" /></flowRegion><flowPara
+         id="flowPara3063" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:53.05411911px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="127.5175"
+       y="466.12784"
+       id="text3065"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3067"
+         x="127.5175"
+         y="466.12784"
+         style="font-size:74.27576447px;font-family:Cabin Condensed;-inkscape-font-specification:Cabin Condensed">TailStreamer</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:53.05411911px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
+       x="127.5175"
+       y="599.69537"
+       id="text3065-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3067-7"
+         x="127.5175"
+         y="599.69537"
+         style="font-size:74.27576447px;fill:#ffffff;fill-opacity:1;font-family:Cabin Condensed;-inkscape-font-specification:Cabin Condensed">TailStreamer</tspan></text>
   </g>
 </svg>

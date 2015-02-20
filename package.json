@@ -1,0 +1,25 @@
+{
+  "name": "tailstreamer",
+  "dependencies": {
+    "event-emitter": "^0.3.2",
+    "hotkeys": "^1.0.0",
+    "is_js": "^0.2.0",
+    "jquery": "^2.1.3",
+    "jquery-highlight": "^3.2.2",
+    "qtip2": "^2.2.0",
+    "sockjs-client": "^1.0.0-beta.10",
+    "stompjs": "^2.3.3"
+  },
+  "devDependencies": {
+    "autoprefixer-core": "^5.1.6",
+    "browserify": "^8.1.3",
+    "gulp": "^3.8.10",
+    "gulp-less": "^2.0.1",
+    "gulp-postcss": "^4.0.3",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.2",
+    "less-plugin-clean-css": "^1.4.0",
+    "vinyl-source-stream": "^1.0.0"
+  }
+}

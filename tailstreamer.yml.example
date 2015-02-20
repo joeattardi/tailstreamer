@@ -1,0 +1,20 @@
+# Sample TailStreamer configuration file
+
+auth:
+  users:
+    - username: user
+      # Password is "password"
+      password: $2a$10$5dVFvqUogL2uybh/OsDZyOncW1qk06Jen1gQwTBsx4GKuz4XX83PK
+
+# HTTP connector listens on port 8080
+server:
+  port: 8080
+
+# Configure an SSL connector on port 8443
+#ssl:
+#  enable: true
+#  port: 8443
+#  keystore: /path/to/keystore
+#  keystorePassword: password
+#  keystoreType: JKS
+#  keyAlias: tailstreamer

@@ -2,13 +2,8 @@
 <html>
     <head>
         <title th:text="'TailStreamer - ' + ${file}">TailStreamer</title>
-        <script src="js/vendor/jquery-2.1.0.min.js"></script>
-        <script src="js/vendor/jquery.highlight-4.js"></script>
-        <script src="js/vendor/jquery.qtip.min.js"></script>
-        <script src="js/vendor/sockjs.min.js"></script>
-        <script src="js/vendor/stomp.min.js"></script>
         <script src="js/tailstreamer.js"></script>
-        
+
         <link rel="stylesheet" href="css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/jquery.qtip.min.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -20,22 +15,29 @@
         <header>
             <div id="connectionStatus">
                 <i class="fa fa-exclamation-triangle"></i>
-                <span id="connectionMessage"></span>
                 <a href="#" id="reconnectLink">retry</a>
             </div>
             <div id="banner">
-                <span th:text="${file}" id="filename"></span>
+                TailStreamer
+                <!--<span th:text="${file}" id="filename"></span>-->
             </div>
             <div id="toolbar">
                 <a href="#" accesskey="C" id="clearButton"><i class="fa fa-ban"></i></a>
 <!--                 <a href="#" id="filterButton"><i class="fa fa-filter"></i></a> -->
 <!--                 <a href="#" id="highlightButton"><i class="fa fa-pencil"></i></a> -->
+                <span id="filename">File: <span th:text="${file}"></span></span>
                 <span class="search">
                     <i class="fa fa-search"></i>
                     <input id="searchText" placeholder="Search content" type="search" size="30" accesskey="s" />
                 </span> 
             </div>
         </header>
-        <div id="logContent"></div>
+        <div id="mainContent">
+            <div id="logContent"></div>
+            <button id="jumpToBottomButton" title="Jump to bottom"><i class="fa fa-2x fa-arrow-down"></i></button>
+        </div>
+        <footer>
+            <a href="http://www.github.com/joeattardi/tailstreamer">TailStreamer</a> version <b th:text="${version}"></b>
+        </footer>
     </body>
 </html>

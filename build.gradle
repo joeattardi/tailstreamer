@@ -1,10 +1,11 @@
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
+        classpath 'be.filipblondeel.gradle:gradle-gulp-plugin:0.1'
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE'
-        classpath 'de.obqo.gradle:gradle-lesscss-plugin:1.0-1.3.3'
     }
 }
 
@@ -13,9 +14,9 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 apply plugin: 'spring-boot'
-apply plugin: 'lesscss'
+apply plugin: 'gulp'
 
-version = '0.2.1'
+version = '0.3.0'
 mainClassName = 'com.thinksincode.tailstreamer.TailStreamer'
 sourceCompatibility = JavaVersion.VERSION_1_7
 
@@ -36,28 +37,19 @@ dependencies {
     testCompile 'org.mockito:mockito-core:1.9.5'
 }
 
-lesscss {
-    source = fileTree('src/main/resources/static/less')
-    dest = 'build/resources/main/static/css'
-    compress = true
-}
-
 sourceSets {
     main {
         resources {
             exclude "static/less"
+            exclude "static/js"
         }
     }
 }
 
-clean.dependsOn {
-    tasks.cleanLesscss
-}
-
 processResources.dependsOn {
-    tasks.lesscss
+    tasks.gulp_default
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.10'
+    gradleVersion = '2.0'
 }
