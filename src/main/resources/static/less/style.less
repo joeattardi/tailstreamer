@@ -13,6 +13,11 @@ body {
 
 input {
     border: 1px solid #000000;
+    outline: none;
+
+    &:focus {
+      border: 1px solid #02779e;
+    }
 }
 
 .qtip {
@@ -26,8 +31,6 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-
-//    .box-shadow(0px 0px 3px 3px #000000);
     
     #banner { 
         color: #FFFFFF;
@@ -40,13 +43,6 @@ header {
         font-size: 2em;
     }
     
-    #filename {
-        color: #86BACC;
-        margin-left: 10px;
-        font-size: 11px;
-        line-height: 40px;
-    }
-    
     #toolbar {
         background: #EEEEEE;
         border-bottom: 1px solid #CCCCCC;
@@ -56,11 +52,14 @@ header {
         height: 30px;
         line-height: 30px;
 
+        #filename {
+          color: #000000;
+        }
+
         .search {
             float: right;
             input {
-                border: 1px solid #AAAAAA;    
-                .border-radius(5px);
+                border-radius: 5px;
                 font-size: 11px;
                 padding: 3px;            
             }
@@ -95,6 +94,25 @@ footer {
   }
 }
 
+button, input[type='submit'] {
+  background: @button-color;
+  border-radius: 2px;
+  color: #FFFFFF;
+  border: none !important;
+  border-bottom: 2px solid darken(@button-color, 5%) !important;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.25s;
+
+  &:hover {
+    background: lighten(@button-color, 5%);
+  }
+
+  &:active {
+    background: lighten(@button-color, 10%);
+  }
+}
+
 #mainContent {
   position: relative;
 
@@ -104,12 +122,6 @@ footer {
     bottom: 10px;
     right: 50px;
     padding: 5px;
-    font-weight: bold;
-    background: @button-color;
-    .border-radius(2px);
-    color: #FFFFFF;
-    border: 1px solid darken(@button-color, 5%);
-    border-bottom-width: 2px;
   }
 
   #logContent {
@@ -126,26 +138,14 @@ footer {
   }
 }
 
-@-webkit-keyframes pulse {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
 #connectionStatus {
     float: right;
     color: #FFFFFF;
     padding: 5px;
     padding-right: 10px;    
     font-size: 11px;
-    
-    .fa-exclamation-triangle {
-        color: #FFCC33;
-    }
-    
-    .fa-check-circle {
-        color: #48B848;
-    }
+    height: 30px;
+    line-height: 30px;
     
     a {
         color: #AAAAAA;
@@ -161,7 +161,8 @@ footer {
 
   #loginWindow {
     width: 400px;
-    border: 1px solid black;
+    border: 1px solid #AAAAAA;
+    border-radius: 3px;
     margin: 150px auto auto auto;
     background: #EEEEEE;
 
@@ -183,18 +184,12 @@ footer {
         border: 1px solid #CCCCCC;
         font-size: 1.3em;
         padding: 5px;
-        .border-radius(3px);
+        border-radius: 3px;
       }
 
       #submit {
         margin-top: 10px;
         padding: 10px 30px 10px 30px;
-        background: #02779e;
-        .border-radius(5px);
-        .gradient(#02779E, lighten(#02779E, 2%));
-        color: #FFFFFF;
-        display: block;
-        border: 1px solid darken(#02779E, 10%);
       }
 
       #loginError {

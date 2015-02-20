@@ -7,6 +7,8 @@ var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var gutil = require('gulp-util');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer-core');
 
 if (gutil.env.devel) {
     gutil.log('Building in development mode');
@@ -28,6 +30,7 @@ gulp.task('less', function() {
        .pipe(less({
            plugins: [cleancss]
        }))
+       .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
        .pipe(gulp.dest('build/resources/main/static/css'))
 });
 

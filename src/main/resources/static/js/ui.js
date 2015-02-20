@@ -177,29 +177,57 @@ function flashIndicator() {
 function setConnectionState(state) {
     var connectionStatus = $("#connectionStatus");
     var icon = $("#connectionStatus i");
-    var message = $("#connectionMessage");
     var reconnectLink = $("#reconnectLink");
     icon.removeClass();
 
     switch (state) {
         case socket.ConnectionState.DISCONNECTED:
-            icon.addClass("fa fa-exclamation-triangle");
-            message.html("Disconnected");
+            icon.addClass("fa fa-lg fa-exclamation-triangle")
+                .qtip({
+                    content: "Disconnected",
+                    position: {
+                        my: "right center",
+                        at: "left center",
+                        target: icon
+                    }
+                });
             reconnectLink.show();
             break;
         case socket.ConnectionState.FAILED:
-            icon.addClass("fa fa-exclamation-triangle");
-            message.html("Failed to connect");
+            icon.addClass("fa fa-lg fa-exclamation-triangle")
+                .qtip({
+                    content: "Connection failed",
+                    position: {
+                        my: "right center",
+                        at: "left center",
+                        target: icon
+                    }
+                });
             reconnectLink.show();
             break;
         case socket.ConnectionState.CONNECTING:
-            icon.addClass("fa fa-refresh");
-            message.html("Connecting");
+            icon.addClass("fa fa-lg fa-spin fa-refresh")
+                .qtip({
+                    content: "Connecting",
+                    position: {
+                        my: "right center",
+                        at: "left center",
+                        target: icon
+                    }
+                });
             reconnectLink.hide();
             break;
         case socket.ConnectionState.CONNECTED:
-            icon.addClass("fa fa-check-circle");
-            message.html("Connected");
+            icon.addClass("fa fa-lg fa-check-circle")
+                .qtip({
+                    content: "Connected",
+                    position: {
+                        my: "right center",
+                        at: "left center",
+                        target: icon
+                    }
+                });
+
             reconnectLink.hide();
             break;
     }

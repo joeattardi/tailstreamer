@@ -15,7 +15,6 @@
         <header>
             <div id="connectionStatus">
                 <i class="fa fa-exclamation-triangle"></i>
-                <span id="connectionMessage"></span>
                 <a href="#" id="reconnectLink">retry</a>
             </div>
             <div id="banner">
@@ -26,6 +25,7 @@
                 <a href="#" accesskey="C" id="clearButton"><i class="fa fa-ban"></i></a>
 <!--                 <a href="#" id="filterButton"><i class="fa fa-filter"></i></a> -->
 <!--                 <a href="#" id="highlightButton"><i class="fa fa-pencil"></i></a> -->
+                <span id="filename">File: <span th:text="${file}"></span></span>
                 <span class="search">
                     <i class="fa fa-search"></i>
                     <input id="searchText" placeholder="Search content" type="search" size="30" accesskey="s" />
