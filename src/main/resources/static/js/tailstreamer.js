@@ -1,7 +1,7 @@
 /**
  * Entry point of the application
  */
-"use strict";
+'use strict';
 
 var $ = require('jquery');
 window.jQuery = $;
