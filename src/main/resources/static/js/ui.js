@@ -114,10 +114,16 @@ function bindHotkeys() {
 function updateSearch() {
     var searchText = $("#searchText").val();
     var $logContent = $("#logContent");
+    var $parent = $logContent.parent();
+
+    $logContent.detach();
+
     $logContent.find(":not(:contains(" + searchText + "))").hide();
     $logContent.find(":contains(" + searchText + ")").show();
     $logContent.unhighlight();
     $logContent.highlight(searchText);
+
+    $parent.append($logContent);
     $logContent.scrollTop($logContent[0].scrollHeight);
 }
 
