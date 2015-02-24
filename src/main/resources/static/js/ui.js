@@ -1,7 +1,7 @@
 /**
  * UI module
  */
-"use strict";
+'use strict';
 
 var $ = require('jquery');
 var hotkeys = require('hotkeys');
@@ -13,31 +13,35 @@ var socket = require('./socket');
 /** The maximum number of log entries to display before removing old entries. */
 var MAX_LINES = 5000;
 
-var NOTIFICATION_DURATION = 200;
-
 /** The hotkey dispatcher */
 var dispatcher;
+
+var $clearButton;
+var $filterButton;
+var $highlightButton;
+var $jumpToBottomButton;
+var $logContent;
+var $searchText;
+var $reconnectLink;
 
 function initTooltips() {
     $.fn.qtip.defaults.style.classes = 'qtip-light';
 
     var hotkeyModifier = is.mac() ? '&#8984;' : 'Alt';
 
-    $('#clearButton').qtip({content: 'Clear contents <span class="shortcut">' + hotkeyModifier + '+X</span>'});
-    $('#filterButton').qtip({content: 'Configure filters'});
-    $('#highlightButton').qtip({content: 'Configure highlighting'});
+    $clearButton.qtip({content: 'Clear contents <span class="shortcut">' + hotkeyModifier + '+X</span>'});
+    $filterButton.qtip({content: 'Configure filters'});
+    $highlightButton.qtip({content: 'Configure highlighting'});
 
-    var $searchField = $('#searchText');
-    $searchField.qtip({
+    $searchText.qtip({
         content: 'Search <span class="shortcut">' + hotkeyModifier + '+S</span>',
         position: {
             my: 'top center',
             at: 'bottom center',
-            target: $searchField
+            target: $searchText
         }
     });
 
-    var $jumpToBottomButton = $('#jumpToBottomButton');
     $jumpToBottomButton.qtip({
         content: 'Jump to bottom',
         position: {
@@ -49,18 +53,15 @@ function initTooltips() {
 }
 
 function initButtons() {
-    var jumpToBottomButton = $('#jumpToBottomButton');
-    var $logContent = $('#logContent');
-
-    jumpToBottomButton.click(function(e) {
+    $jumpToBottomButton.click(function(e) {
         $logContent.scrollTop($logContent[0].scrollHeight);
     });
 
     $logContent.on('scroll', function(e) {
         if ($logContent.scrollTop() + $logContent.innerHeight() !== $logContent[0].scrollHeight) {
-            jumpToBottomButton.fadeIn();
+            $jumpToBottomButton.fadeIn();
         } else {
-            jumpToBottomButton.fadeOut();
+            $jumpToBottomButton.fadeOut();
         }
     });
 }
@@ -69,30 +70,21 @@ function initButtons() {
  * Recalculates the proper size of the log content area.
  */
 function sizeLogContentArea() {
-    $('#logContent').height($(window).height() - 112);
+    $logContent.height($(window).height() - 112);
 }
 
 /**
  * Tries to connect.
  */
 function retryConnection() {
-    hideConnectionError();
     socket.connect();
-}
-
-/**
- * Hides the connection error box
- */
-function hideConnectionError() {
-    var $messageBox = $('#connectionMessage');
-    $messageBox.animate({top: -$messageBox.outerHeight()}, NOTIFICATION_DURATION);
 }
 
 function bindEventListeners() {
     $(window).resize(sizeLogContentArea);
-    $('#clearButton').click(clearLog);
-    $('#searchText').on('keyup click', updateSearch);
-    $('#reconnectLink').hide().click(retryConnection);
+    $clearButton.click(clearLog);
+    $searchText.on('keyup click', updateSearch);
+    $reconnectLink.hide().click(retryConnection);
 }
 
 function bindHotkeys() {
@@ -100,11 +92,11 @@ function bindHotkeys() {
     var hotkeyModifier = is.mac() ? 'cmd' : 'alt';
 
     dispatcher.on(hotkeyModifier + ' s', function() {
-        $('#searchText').focus();
+        $searchText.focus();
     });
 
     dispatcher.on(hotkeyModifier + ' x', function() {
-        $('#clearButton').click();
+        $clearButton.click();
     });
 }
 
@@ -112,8 +104,7 @@ function bindHotkeys() {
  * Updates the search results displayed in the log area.
  */
 function updateSearch() {
-    var searchText = $('#searchText').val();
-    var $logContent = $('#logContent');
+    var searchText = $searchText.val();
     var $parent = $logContent.parent();
 
     $logContent.detach();
@@ -128,12 +119,11 @@ function updateSearch() {
 }
 
 function clearLog() {
-    $('#logContent').empty();
+    $logContent.empty();
 }
 
 function addLogMessage(message) {
-    var searchText = $('#searchText').val();
-    var $logContent = $('#logContent');
+    var searchText = $searchText.val();
 
     // If we're scrolled down all the way, then automatically scroll to the bottom after appending
     // the new log entry. If not, that means the user scrolled up, so in that case we won't autoscroll.
@@ -145,8 +135,7 @@ function addLogMessage(message) {
         lines.slice(0, diff).remove();
     }
 
-    var $contentDiv = $(document.createElement('div'));
-    $contentDiv.html(message);
+    var $contentDiv = $('<div></div>').html(message);
 
     if (searchText.length > 0) {
         // If this doesn't match the search text, hide it
@@ -162,18 +151,6 @@ function addLogMessage(message) {
     if (autoscroll) {
         $logContent.scrollTop($logContent[0].scrollHeight);
     }
-    flashIndicator();
-}
-
-/**
- * Flashes the connection indicator to indicate data
- * was received.
- */
-function flashIndicator() {
-    var $indicator = $('#indicator');
-    $indicator.fadeOut(100, function() {
-        $indicator.fadeIn(100);
-    });
 }
 
 /**
@@ -240,6 +217,14 @@ function setConnectionState(state) {
 }
 
 $(document).ready(function() {
+    $clearButton = $('#clearButton');
+    $filterButton = $('#filterButton');
+    $highlightButton = $('#highlightButton');
+    $logContent = $('#logContent');
+    $jumpToBottomButton = $('#jumpToBottomButton');
+    $searchText = $('#searchText');
+    $reconnectLink = $('#reconnectLink');
+
     sizeLogContentArea();
     initButtons();
     initTooltips();
