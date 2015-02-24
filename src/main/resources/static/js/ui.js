@@ -83,7 +83,7 @@ function retryConnection() {
 function bindEventListeners() {
     $(window).resize(sizeLogContentArea);
     $clearButton.click(clearLog);
-    $searchText.on('keyup click', updateSearch);
+    $searchText.on('keyup click search', updateSearch);
     $reconnectLink.hide().click(retryConnection);
 }
 
