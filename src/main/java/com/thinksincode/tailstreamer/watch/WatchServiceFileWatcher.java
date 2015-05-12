@@ -4,13 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.nio.file.ClosedWatchServiceException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
+import name.pachler.nio.file.*;
 import java.util.List;
 
 /**
@@ -26,11 +20,12 @@ public class WatchServiceFileWatcher extends AbstractFileWatcher implements File
     /**
      * Starts watching a file.
      */
-    public void watchFile(final Path watchedFile) {
+    public void watchFile(final java.nio.file.Path watchedFile) {
         try {
             WatchService watchService = FileSystems.getDefault().newWatchService();
             // WatchService only watches directories, so watch the file's parent
-            watchedFile.getParent().register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
+            Path parent = Paths.get(watchedFile.getParent().toFile().getAbsolutePath());
+            parent.register(watchService, StandardWatchEventKind.ENTRY_MODIFY);
 
             // Wait for changes
             for (boolean valid = true; watch && valid; ) {
@@ -38,14 +33,14 @@ public class WatchServiceFileWatcher extends AbstractFileWatcher implements File
                 List<WatchEvent<?>> events = key.pollEvents();
                 for (WatchEvent<?> event : events) {
                     // overflow events can happen, we don't care about them
-                    if (event.kind() == StandardWatchEventKinds.OVERFLOW) {
+                    if (event.kind() == StandardWatchEventKind.OVERFLOW) {
                         continue;
                     }
 
                     // Events will fire for any files in the directory. Only
                     // respond to changes to the file being watched
                     Path changedFile = (Path) event.context();
-                    if (changedFile.getFileName().equals(watchedFile.getFileName())) {
+                    if (changedFile.toString().equals(watchedFile.getFileName().toString())) {
                         notifyListeners(new FileUpdateEvent(this));
                     }
                 }
