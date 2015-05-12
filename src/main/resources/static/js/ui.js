@@ -7,6 +7,7 @@ var $ = require('jquery');
 var hotkeys = require('hotkeys');
 require('qtip2');
 var is = require('is_js');
+var debounce = require('debounce');
 
 var socket = require('./socket');
 
@@ -83,7 +84,7 @@ function retryConnection() {
 function bindEventListeners() {
     $(window).resize(sizeLogContentArea);
     $clearButton.click(clearLog);
-    $searchText.on('keyup click search', updateSearch);
+    $searchText.on('keyup click search', debounce(updateSearch, 250));
     $reconnectLink.hide().click(retryConnection);
 }
 
