@@ -1,4 +1,4 @@
-package com.thinksincode.tailstreamer;
+package com.thinksincode.tailstreamer.watch;
 
 import org.springframework.context.ApplicationEvent;
 

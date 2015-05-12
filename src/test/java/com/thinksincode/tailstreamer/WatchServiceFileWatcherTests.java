@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.thinksincode.tailstreamer.watch.FileListener;
+import com.thinksincode.tailstreamer.watch.FileUpdateEvent;
+import com.thinksincode.tailstreamer.watch.WatchServiceFileWatcher;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-public class FileWatcherTests {
+public class WatchServiceFileWatcherTests {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();    
     
@@ -40,15 +43,16 @@ public class FileWatcherTests {
         }
         
         public void run() {
-            FileWatcher watcher = new FileWatcher() {
+            final WatchServiceFileWatcher watcher = new WatchServiceFileWatcher();
+            watcher.addFileListener(new FileListener() {
                 @Override
-                void fileChanged() {
+                public void fileChanged(FileUpdateEvent event) {
                     synchronized (this) {
                         updated = true;
-                        stop();
+                        watcher.stop();
                     }
                 }
-            };
+            });
             watcher.watchFile(file.toPath());            
         }
         

@@ -1,4 +1,7 @@
-package com.thinksincode.tailstreamer;
+package com.thinksincode.tailstreamer.watch;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.ClosedWatchServiceException;
@@ -10,24 +13,16 @@ import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.stereotype.Service;
-
 /**
- * Watches a file for changes, and notifies observers when the file is updated.
+ * A {@link FileWatcher} that uses the Java 7 {@link java.nio.file.WatchService} to
+ * watch a file for changes.
  */
-@Service("fileWatcher")
-public class FileWatcher implements ApplicationEventPublisherAware {           
-    private Logger logger = LoggerFactory.getLogger(FileWatcher.class);
-    
-    private ApplicationEventPublisher eventPublisher;
-    
+public class WatchServiceFileWatcher extends AbstractFileWatcher implements FileWatcher {
+    private Logger logger = LoggerFactory.getLogger(WatchServiceFileWatcher.class);
+
     /** Flag that indicates whether the watch service should continue. */
     private boolean watch = true;
-    
+
     /**
      * Starts watching a file.
      */
@@ -36,7 +31,7 @@ public class FileWatcher implements ApplicationEventPublisherAware {
             WatchService watchService = FileSystems.getDefault().newWatchService();
             // WatchService only watches directories, so watch the file's parent
             watchedFile.getParent().register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
-            
+
             // Wait for changes
             for (boolean valid = true; watch && valid; ) {
                 WatchKey key = watchService.take();
@@ -46,40 +41,28 @@ public class FileWatcher implements ApplicationEventPublisherAware {
                     if (event.kind() == StandardWatchEventKinds.OVERFLOW) {
                         continue;
                     }
-                    
-                    // Events will fire for any files in the directory. Only 
+
+                    // Events will fire for any files in the directory. Only
                     // respond to changes to the file being watched
                     Path changedFile = (Path) event.context();
                     if (changedFile.getFileName().equals(watchedFile.getFileName())) {
-                        fileChanged();
+                        notifyListeners(new FileUpdateEvent(this));
                     }
                 }
-                
+
                 valid = key.reset();
             }
         } catch (IOException | ClosedWatchServiceException e) {
-            logger.error("Error while watching file: " + e.getMessage(), e); 
+            logger.error("Error while watching file: " + e.getMessage(), e);
         } catch (InterruptedException ie) {
             logger.warn("Watch service was interrupted", ie);
         }
     }
 
     /**
-     * Called when changes have been detected to the file.
-     */
-    void fileChanged() {
-        eventPublisher.publishEvent(new FileUpdateEvent(this));
-    }
-    
-    /**
      * Signals the watcher to stop watching.
      */
     public void stop() {
         watch = false;
-    }
-    
-    @Override
-    public void setApplicationEventPublisher(ApplicationEventPublisher eventPublisher) {
-        this.eventPublisher = eventPublisher;
     }
 }
