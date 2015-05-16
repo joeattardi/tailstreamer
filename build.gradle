@@ -16,7 +16,7 @@ apply plugin: 'application'
 apply plugin: 'spring-boot'
 apply plugin: 'gulp'
 
-version = '0.3.0'
+version = '0.4.0'
 mainClassName = 'com.thinksincode.tailstreamer.TailStreamer'
 sourceCompatibility = JavaVersion.VERSION_1_7
 
@@ -25,6 +25,7 @@ repositories {
 }
 
 dependencies {
+    compile 'net.sf.jpathwatch:jpathwatch:0.95'
     compile 'org.apache.commons:commons-lang3:3.2.1'
     compile 'net.sf.jopt-simple:jopt-simple:4.6'
     compile 'org.springframework.boot:spring-boot-starter-web'

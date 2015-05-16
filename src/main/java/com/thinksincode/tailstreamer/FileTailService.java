@@ -18,7 +18,7 @@ public class FileTailService {
     private Logger logger = LoggerFactory.getLogger(FileTailService.class);
     
     @Autowired
-    private FileWatcher watcher;
+    private FileWatcherService watcher;
     
     @Autowired
     private FileContentReader reader;
