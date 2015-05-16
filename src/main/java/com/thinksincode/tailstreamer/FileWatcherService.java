@@ -1,15 +1,5 @@
 package com.thinksincode.tailstreamer;
 
-import java.io.IOException;
-import java.nio.file.ClosedWatchServiceException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
-import java.util.List;
-
 import com.thinksincode.tailstreamer.watch.FileListener;
 import com.thinksincode.tailstreamer.watch.FileUpdateEvent;
 import com.thinksincode.tailstreamer.watch.FileWatcher;
@@ -19,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
+
+import java.nio.file.Path;
 
 /**
  * Watches a file for changes, and notifies observers when the file is updated.

@@ -7,10 +7,6 @@ import java.io.IOException;
 import name.pachler.nio.file.*;
 import java.util.List;
 
-/**
- * A {@link FileWatcher} that uses the Java 7 {@link java.nio.file.WatchService} to
- * watch a file for changes.
- */
 public class WatchServiceFileWatcher extends AbstractFileWatcher implements FileWatcher {
     private Logger logger = LoggerFactory.getLogger(WatchServiceFileWatcher.class);
 
