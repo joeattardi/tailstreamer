@@ -227,7 +227,7 @@ function setConnectionState(state) {
         case socket.ConnectionState.CONNECTED:
             noty({
                 text: 'Connected to server',
-                timeout: 2000,
+                timeout: 1000,
                 theme: 'relax',
                 type: 'success',
                 layout: 'topRight',
