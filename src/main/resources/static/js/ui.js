@@ -8,6 +8,7 @@ var hotkeys = require('hotkeys');
 require('qtip2');
 var is = require('is_js');
 var debounce = require('debounce');
+var noty = require('noty');
 
 var socket = require('./socket');
 
@@ -166,6 +167,17 @@ function setConnectionState(state) {
 
     switch (state) {
         case socket.ConnectionState.DISCONNECTED:
+            noty({
+                text: 'Disconnected from server',
+                timeout: 2000,
+                theme: 'relax',
+                type: 'warning',
+                layout: 'topRight',
+                animation: {
+                    open: {opacity: 'toggle'},
+                    close: {opacity: 'toggle'}
+                }
+            });
             icon.addClass('fa fa-lg fa-exclamation-triangle')
                 .qtip({
                     content: 'Disconnected',
@@ -178,6 +190,17 @@ function setConnectionState(state) {
             reconnectLink.show();
             break;
         case socket.ConnectionState.FAILED:
+            noty({
+                text: 'Failed to connect to the server',
+                timeout: 2000,
+                theme: 'relax',
+                type: 'error',
+                layout: 'topRight',
+                animation: {
+                    open: {opacity: 'toggle'},
+                    close: {opacity: 'toggle'}
+                }
+            });
             icon.addClass('fa fa-lg fa-exclamation-triangle')
                 .qtip({
                     content: 'Connection failed',
@@ -202,6 +225,17 @@ function setConnectionState(state) {
             reconnectLink.hide();
             break;
         case socket.ConnectionState.CONNECTED:
+            noty({
+                text: 'Connected to server',
+                timeout: 2000,
+                theme: 'relax',
+                type: 'success',
+                layout: 'topRight',
+                animation: {
+                    open: {opacity: 'toggle'},
+                    close: {opacity: 'toggle'}
+                }
+            });
             icon.addClass('fa fa-lg fa-check-circle')
                 .qtip({
                     content: 'Connected',

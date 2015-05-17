@@ -14,8 +14,8 @@
     <body>
         <header>
             <div id="connectionStatus">
+                <a href="#" id="reconnectLink">Reconnect</a>
                 <i class="fa fa-exclamation-triangle"></i>
-                <a href="#" id="reconnectLink">retry</a>
             </div>
             <div id="banner">
                 TailStreamer
@@ -37,7 +37,7 @@
             <button id="jumpToBottomButton" title="Jump to bottom"><i class="fa fa-2x fa-arrow-down"></i></button>
         </div>
         <footer>
-            <a href="http://www.github.com/joeattardi/tailstreamer">TailStreamer</a> version <b th:text="${version}"></b>
+            <a target="_blank" href="http://www.github.com/joeattardi/tailstreamer">TailStreamer</a> version <b th:text="${version}"></b>
         </footer>
     </body>
 </html>

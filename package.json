@@ -7,6 +7,7 @@
     "is_js": "^0.2.0",
     "jquery": "^2.1.3",
     "jquery-highlight": "^3.2.2",
+    "noty": "^2.3.5",
     "qtip2": "^2.2.0",
     "sockjs-client": "^1.0.0-beta.10",
     "stompjs": "^2.3.3"
