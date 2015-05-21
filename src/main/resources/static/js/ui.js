@@ -26,6 +26,7 @@ var $jumpToBottomButton;
 var $logContent;
 var $searchText;
 var $reconnectLink;
+var $filenameContainer;
 
 function initTooltips() {
     $.fn.qtip.defaults.style.classes = 'qtip-light';
@@ -53,6 +54,16 @@ function initTooltips() {
             target: $jumpToBottomButton
         }
     });
+
+    $filenameContainer.qtip({
+        content: 'File name',
+        position: {
+            my: 'right center',
+            at: 'left center',
+            target: $filenameContainer
+        }
+    });
+
 }
 
 function initButtons() {
@@ -260,6 +271,7 @@ $(document).ready(function() {
     $jumpToBottomButton = $('#jumpToBottomButton');
     $searchText = $('#searchText');
     $reconnectLink = $('#reconnectLink');
+    $filenameContainer = $('#filenameContainer');
 
     sizeLogContentArea();
     initButtons();

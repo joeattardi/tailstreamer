@@ -37,10 +37,18 @@ public class FileTailService {
      * Gets the path of the file being tailed.
      * @return the absolute path of the file
      */
-    public String getFile() {
+    public String getFilePath() {
         return file.toString();
     }
-    
+
+    /**
+     * Gets the name of the file being tailed.
+     * @return the file name only
+     */
+    public String getFileName() {
+        return file.getFileName().toString();
+    }
+
     /**
      * Begins the file tail operation on a file.
      */

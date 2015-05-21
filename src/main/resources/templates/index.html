@@ -19,17 +19,21 @@
             </div>
             <div id="banner">
                 TailStreamer
-                <!--<span th:text="${file}" id="filename"></span>-->
                 <span class="topItem">
-                    <span class="topLabel" title="Elapsed time"><i class="fa fa-clock-o"></i></span>
+                    <span class="topLabel"><i class="fa fa-clock-o"></i></span>
                     <span class="topValue" id="elapsed">00:00</span>
                 </span>
+
+                <span class="topItem" id="filenameContainer">
+                    <span class="topLabel"><i class="fa fa-file-o"></i></span>
+                    <span class="topValue" th:text="${file}" id="filename">file.log</span>
+                </span>
+
             </div>
             <div id="toolbar">
                 <a href="#" accesskey="C" id="clearButton"><i class="fa fa-ban"></i></a>
 <!--                 <a href="#" id="filterButton"><i class="fa fa-filter"></i></a> -->
 <!--                 <a href="#" id="highlightButton"><i class="fa fa-pencil"></i></a> -->
-                <span id="filename">File: <span th:text="${file}"></span></span>
                 <span class="search">
                     <i class="fa fa-search"></i>
                     <input id="searchText" placeholder="Search content" type="search" size="30" accesskey="s" />

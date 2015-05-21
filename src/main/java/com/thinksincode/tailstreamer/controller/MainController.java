@@ -15,7 +15,7 @@ public class MainController {
     
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("file", fileTailService.getFile());
+        model.addAttribute("file", fileTailService.getFileName());
         model.addAttribute("version", TailStreamer.VERSION);
         return "index";
     }
