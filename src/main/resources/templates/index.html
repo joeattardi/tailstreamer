@@ -2,7 +2,7 @@
 <html>
     <head>
         <title th:text="'TailStreamer - ' + ${file}">TailStreamer</title>
-        <script src="js/tailstreamer.js"></script>
+        <script type="text/javascript" src="js/tailstreamer.js"></script>
 
         <link rel="stylesheet" href="css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/jquery.qtip.min.css" />
@@ -26,7 +26,7 @@
 
                 <span class="topItem" id="filenameContainer">
                     <span class="topLabel"><i class="fa fa-file-o"></i></span>
-                    <span class="topValue" th:text="${file}" id="filename">file.log</span>
+                    <span class="topValue" th:attr="data-filepath=${filePath}" th:text="${file}" id="filename">file.log</span>
                 </span>
 
             </div>

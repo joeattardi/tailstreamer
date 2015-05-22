@@ -56,7 +56,7 @@ function initTooltips() {
     });
 
     $filenameContainer.qtip({
-        content: 'File name',
+        content: $('#filename').data('filepath'),
         position: {
             my: 'right center',
             at: 'left center',
