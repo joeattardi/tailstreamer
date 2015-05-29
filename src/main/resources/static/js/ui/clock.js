@@ -1,7 +1,6 @@
 'use strict';
 
 var $ = require('jquery');
-require('qtip2');
 var socket = require('../socket');
 
 var startTime = new Date().getTime();
@@ -11,17 +10,8 @@ var $clock;
 $(document).ready(initClock);
 
 function initClock() {
-    $.fn.qtip.defaults.style.classes = 'qtip-light';
     socket.onConnectionStateChange(setConnectionState);
     $clock = $('#elapsed');
-    $clock.parent().qtip({
-        content: 'Elapsed time',
-        position: {
-            my: 'right center',
-            at: 'left center',
-            target: $clock.parent()
-        }
-    });
 }
 
 function updateClock() {
