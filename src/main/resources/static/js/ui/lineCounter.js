@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('jquery');
-var socket = require('./socket');
+var socket = require('../socket');
 
 var $counter;
 

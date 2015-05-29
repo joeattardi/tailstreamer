@@ -10,7 +10,7 @@ var is = require('is_js');
 var debounce = require('debounce');
 var noty = require('noty');
 
-var socket = require('./socket');
+var socket = require('../socket');
 require('./clock');
 require('./lineCounter');
 require('./unreadLineCount');

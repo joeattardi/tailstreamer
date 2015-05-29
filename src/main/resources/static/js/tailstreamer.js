@@ -9,7 +9,7 @@ window.jQuery = $;
 require('jquery-highlight');
 require('qtip2');
 
-require('./ui');
+require('./ui/ui');
 var socket = require('./socket');
 
 var jQuery = $;

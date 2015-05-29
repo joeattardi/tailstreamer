@@ -7,7 +7,7 @@
 'use strict';
 
 var $ = require('jquery');
-var socket = require('./socket');
+var socket = require('../socket');
 
 /** Whether or not the window has focus. */
 var windowFocused = true;

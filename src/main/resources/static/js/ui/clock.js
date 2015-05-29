@@ -2,7 +2,7 @@
 
 var $ = require('jquery');
 require('qtip2');
-var socket = require('./socket');
+var socket = require('../socket');
 
 var startTime = new Date().getTime();
 var interval;
