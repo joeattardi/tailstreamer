@@ -13,6 +13,7 @@ var noty = require('noty');
 var socket = require('./socket');
 require('./clock');
 require('./lineCounter');
+require('./unreadLineCount');
 
 /** The maximum number of log entries to display before removing old entries. */
 var MAX_LINES = 5000;
