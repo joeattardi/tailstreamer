@@ -7,9 +7,19 @@ var $ = require('jquery');
 var socket = require('../socket');
 var noty = require('noty');
 
+var $notificationContainer;
 var $connectionStatus;
 var $reconnectLink;
 var $icon;
+
+function setDefaults() {
+    $.noty.defaults.theme = 'relax';
+    $.noty.defaults.layout = 'topRight';
+    $.noty.defaults.animation = {
+        open: { opacity: 'toggle' },
+        close: { opacity: 'toggle' }
+    };
+}
 
 /**
  * Updates the connection state indicator.
@@ -20,16 +30,10 @@ function setConnectionState(state) {
 
     switch (state) {
         case socket.ConnectionState.DISCONNECTED:
-            noty({
+            $notificationContainer.noty({
                 text: 'Disconnected from server',
                 timeout: 2000,
-                theme: 'relax',
-                type: 'warning',
-                layout: 'topRight',
-                animation: {
-                    open: {opacity: 'toggle'},
-                    close: {opacity: 'toggle'}
-                }
+                type: 'warning'
             });
             $icon.addClass('fa fa-lg fa-exclamation-triangle')
                 .qtip({
@@ -43,16 +47,10 @@ function setConnectionState(state) {
             $reconnectLink.show();
             break;
         case socket.ConnectionState.FAILED:
-            noty({
+            $notificationContainer.noty({
                 text: 'Failed to connect to the server',
                 timeout: 2000,
-                theme: 'relax',
-                type: 'error',
-                layout: 'topRight',
-                animation: {
-                    open: {opacity: 'toggle'},
-                    close: {opacity: 'toggle'}
-                }
+                type: 'error'
             });
             $icon.addClass('fa fa-lg fa-exclamation-triangle')
                 .qtip({
@@ -78,16 +76,10 @@ function setConnectionState(state) {
             $reconnectLink.hide();
             break;
         case socket.ConnectionState.CONNECTED:
-            noty({
+            $notificationContainer.noty({
                 text: 'Connected to server',
                 timeout: 1000,
-                theme: 'relax',
-                type: 'success',
-                layout: 'topRight',
-                animation: {
-                    open: {opacity: 'toggle'},
-                    close: {opacity: 'toggle'}
-                }
+                type: 'success'
             });
             $icon.addClass('fa fa-lg fa-check-circle')
                 .qtip({
@@ -105,9 +97,11 @@ function setConnectionState(state) {
 }
 
 $(document).ready(function() {
+    $notificationContainer = $('#notificationContainer');
     $connectionStatus = $('#connectionStatus');
     $icon = $('#connectionStatus i');
     $reconnectLink = $('#reconnectLink');
 
+    setDefaults();
     socket.onConnectionStateChange(setConnectionState);
 });
