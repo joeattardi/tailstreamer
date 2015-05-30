@@ -71,7 +71,7 @@ header {
     #toolbar {
         background: #EEEEEE;
         border-bottom: 1px solid #CCCCCC;
-        color: #CCCCCC;
+        color: #666666;
         padding-left: 10px;
         padding-right: 10px;
         height: 30px;
@@ -80,16 +80,22 @@ header {
         .search {
             float: right;
             input {
-                border-radius: 5px;
+                border: 1px solid #666666;
+                border-radius: 3px;
                 font-size: 11px;
-                padding: 3px;            
+                padding: 3px;
+
+              &:focus {
+                border: 1px solid #02779e;
+              }
             }
         }
         
         a {
+            float: right;
             text-decoration: none;
-            color: #CCCCCC;
-            padding: 2px 5px 2px 5px;
+            color: #666666;
+            padding: 0 10px;
         }
         
         a:hover {
