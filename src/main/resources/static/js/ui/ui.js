@@ -20,7 +20,6 @@ var $filterButton;
 var $highlightButton;
 var $jumpToBottomButton;
 var $logContent;
-var $reconnectLink;
 
 function initButtons() {
     $jumpToBottomButton.click(function(e) {
@@ -34,6 +33,8 @@ function initButtons() {
             $jumpToBottomButton.fadeOut();
         }
     });
+
+    $('#reconnectButton').hide().click(retryConnection);
 }
 
 /**
@@ -53,7 +54,6 @@ function retryConnection() {
 function bindEventListeners() {
     $(window).resize(sizeLogContentArea);
     $clearButton.click(clearLog);
-    $reconnectLink.hide().click(retryConnection);
 }
 
 function clearLog(e) {
@@ -67,7 +67,6 @@ $(document).ready(function() {
     $highlightButton = $('#highlightButton');
     $logContent = $('#logContent');
     $jumpToBottomButton = $('#jumpToBottomButton');
-    $reconnectLink = $('#reconnectLink');
 
     sizeLogContentArea();
     initButtons();

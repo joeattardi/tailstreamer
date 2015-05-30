@@ -9,7 +9,7 @@ var noty = require('noty');
 
 var $notificationContainer;
 var $connectionStatus;
-var $reconnectLink;
+var $reconnectButton;
 var $icon;
 
 function setDefaults() {
@@ -44,7 +44,7 @@ function setConnectionState(state) {
                         target: $icon
                     }
                 });
-            $reconnectLink.show();
+            $reconnectButton.show();
             break;
         case socket.ConnectionState.FAILED:
             $notificationContainer.noty({
@@ -61,7 +61,7 @@ function setConnectionState(state) {
                         target: $icon
                     }
                 });
-            $reconnectLink.show();
+            $reconnectButton.show();
             break;
         case socket.ConnectionState.CONNECTING:
             $icon.addClass('fa fa-lg fa-spin fa-refresh')
@@ -73,7 +73,7 @@ function setConnectionState(state) {
                         target: $icon
                     }
                 });
-            $reconnectLink.hide();
+            $reconnectButton.hide();
             break;
         case socket.ConnectionState.CONNECTED:
             $notificationContainer.noty({
@@ -91,7 +91,7 @@ function setConnectionState(state) {
                     }
                 });
 
-            $reconnectLink.hide();
+            $reconnectButton.hide();
             break;
     }
 }
@@ -99,8 +99,8 @@ function setConnectionState(state) {
 $(document).ready(function() {
     $notificationContainer = $('#notificationContainer');
     $connectionStatus = $('#connectionStatus');
-    $icon = $('#connectionStatus i');
-    $reconnectLink = $('#reconnectLink');
+    $icon = $('#connectionStatusIcon');
+    $reconnectButton = $('#reconnectButton');
 
     setDefaults();
     socket.onConnectionStateChange(setConnectionState);

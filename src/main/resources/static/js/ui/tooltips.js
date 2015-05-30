@@ -69,6 +69,16 @@ function initTooltips() {
             target: $counter.parent()
         }
     });
+
+    var $reconnectButton = $('#reconnectButton');
+    $reconnectButton.qtip({
+        content: 'Reconnect',
+        position: {
+            my: 'right center',
+            at: 'left center',
+            target: $reconnectButton
+        }
+    });
 }
 
 $(document).ready(function() {
