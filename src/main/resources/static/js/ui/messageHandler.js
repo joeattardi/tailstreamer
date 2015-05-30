@@ -1,3 +1,6 @@
+/**
+ * Handles messages received from the WebSocket server.
+ */
 'use strict';
 
 var $ = require('jquery');

@@ -1,3 +1,6 @@
+/**
+ * Manages all shortcut keys.
+ */
 'use strict';
 
 var $ = require('jquery');

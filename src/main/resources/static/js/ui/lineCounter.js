@@ -1,3 +1,6 @@
+/**
+ * Shows a running total of the number of log messages received.
+ */
 'use strict';
 
 var $ = require('jquery');

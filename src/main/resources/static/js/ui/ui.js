@@ -20,9 +20,7 @@ var $filterButton;
 var $highlightButton;
 var $jumpToBottomButton;
 var $logContent;
-var $searchText;
 var $reconnectLink;
-var $filenameContainer;
 
 function initButtons() {
     $jumpToBottomButton.click(function(e) {
@@ -69,9 +67,7 @@ $(document).ready(function() {
     $highlightButton = $('#highlightButton');
     $logContent = $('#logContent');
     $jumpToBottomButton = $('#jumpToBottomButton');
-    $searchText = $('#searchText');
     $reconnectLink = $('#reconnectLink');
-    $filenameContainer = $('#filenameContainer');
 
     sizeLogContentArea();
     initButtons();

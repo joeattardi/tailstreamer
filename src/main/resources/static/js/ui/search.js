@@ -1,3 +1,6 @@
+/**
+ * Handles search functionality.
+ */
 'use strict';
 
 var $ = require('jquery');

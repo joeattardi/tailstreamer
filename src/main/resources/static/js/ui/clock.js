@@ -1,3 +1,7 @@
+/**
+ * A clock that keeps track of the elapsed time connected
+ * to the server.
+ */
 'use strict';
 
 var $ = require('jquery');

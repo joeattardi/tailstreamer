@@ -1,3 +1,6 @@
+/**
+ * Displays the connection status in the main window.
+ */
 'use strict';
 
 var $ = require('jquery');

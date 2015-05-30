@@ -1,3 +1,6 @@
+/**
+ * Sets all tooltips in the application.
+ */
 'use strict';
 
 var $ = require('jquery');
