@@ -2,7 +2,7 @@
 <html>
     <head>
         <title th:text="'TailStreamer - ' + ${file}">TailStreamer</title>
-        <script src="js/tailstreamer.js"></script>
+        <script type="text/javascript" src="js/tailstreamer.js"></script>
 
         <link rel="stylesheet" href="css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/jquery.qtip.min.css" />
@@ -14,30 +14,43 @@
     <body>
         <header>
             <div id="connectionStatus">
-                <i class="fa fa-exclamation-triangle"></i>
-                <a href="#" id="reconnectLink">retry</a>
+                <button id="reconnectButton"><i class="fa fa-refresh"></i></button>
+                <i id="connectionStatusIcon" class="fa fa-exclamation-triangle"></i>
             </div>
             <div id="banner">
                 TailStreamer
-                <!--<span th:text="${file}" id="filename"></span>-->
+                <span class="topItem">
+                    <span class="topLabel"><i class="fa fa-bars"></i></span>
+                    <span class="topValue" id="lineCount">0</span>
+                </span>
+                <span class="topItem">
+                    <span class="topLabel"><i class="fa fa-clock-o"></i></span>
+                    <span class="topValue" id="elapsed">00:00</span>
+                </span>
+
+                <span class="topItem" id="filenameContainer">
+                    <span class="topLabel"><i class="fa fa-file-o"></i></span>
+                    <span class="topValue" th:attr="data-filepath=${filePath}" th:text="${file}" id="filename">file.log</span>
+                </span>
+
             </div>
             <div id="toolbar">
-                <a href="#" accesskey="C" id="clearButton"><i class="fa fa-ban"></i></a>
 <!--                 <a href="#" id="filterButton"><i class="fa fa-filter"></i></a> -->
 <!--                 <a href="#" id="highlightButton"><i class="fa fa-pencil"></i></a> -->
-                <span id="filename">File: <span th:text="${file}"></span></span>
                 <span class="search">
                     <i class="fa fa-search"></i>
                     <input id="searchText" placeholder="Search content" type="search" size="30" accesskey="s" />
-                </span> 
+                </span>
+                <a href="#" accesskey="C" id="clearButton"><i class="fa fa-ban"></i></a>
             </div>
         </header>
         <div id="mainContent">
+            <div id="notificationContainer"></div>
             <div id="logContent"></div>
             <button id="jumpToBottomButton" title="Jump to bottom"><i class="fa fa-2x fa-arrow-down"></i></button>
         </div>
         <footer>
-            <a href="http://www.github.com/joeattardi/tailstreamer">TailStreamer</a> version <b th:text="${version}"></b>
+            <a target="_blank" href="http://www.github.com/joeattardi/tailstreamer">TailStreamer</a> version <b th:text="${version}"></b>
         </footer>
     </body>
 </html>

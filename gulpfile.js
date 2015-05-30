@@ -37,6 +37,6 @@ gulp.task('less', function() {
 gulp.task('default', ['browserify', 'less']);
 
 gulp.task('watch', function() {
-    gulp.watch('src/main/resources/static/js/*.js', ['browserify']);
+    gulp.watch('src/main/resources/static/js/**/*.js', ['browserify']);
     gulp.watch('src/main/resources/static/less/*.less', ['less']);
 });
