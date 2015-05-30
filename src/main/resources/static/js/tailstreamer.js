@@ -6,9 +6,6 @@
 var $ = require('jquery');
 window.jQuery = $;
 
-require('jquery-highlight');
-require('qtip2');
-
 require('./ui/ui');
 var socket = require('./socket');
 

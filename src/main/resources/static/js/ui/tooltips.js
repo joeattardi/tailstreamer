@@ -5,6 +5,7 @@
 
 var $ = require('jquery');
 var is = require('is_js');
+require('qtip2');
 
 var $clearButton;
 var $filterButton;

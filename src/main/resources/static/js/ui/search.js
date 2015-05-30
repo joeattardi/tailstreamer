@@ -5,6 +5,7 @@
 
 var $ = require('jquery');
 var debounce = require('debounce');
+require('jquery-highlight');
 
 var $logContent;
 var $searchText;
