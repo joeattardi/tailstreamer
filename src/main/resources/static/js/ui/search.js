@@ -1,11 +1,9 @@
 /**
  * Handles search functionality.
  */
-'use strict';
-
-var $ = require('jquery');
-var debounce = require('debounce');
-require('jquery-highlight');
+import $ from 'jquery';
+import debounce from 'debounce';
+import 'jquery-highlight';
 
 var $logContent;
 var $searchText;
@@ -19,8 +17,8 @@ function updateSearch() {
 
     $logContent.detach();
 
-    $logContent.find(':not(:contains(' + searchText + '))').hide();
-    $logContent.find(':contains(' + searchText + ')').show();
+    $logContent.find(`:not(:contains(${searchText}))`).hide();
+    $logContent.find(`:contains(${searchText})`).show();
     $logContent.unhighlight();
     $logContent.highlight(searchText);
 

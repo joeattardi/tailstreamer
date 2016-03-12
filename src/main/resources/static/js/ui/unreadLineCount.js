@@ -4,10 +4,8 @@
  *
  * When the window regains focus, the count will be cleared.
  */
-'use strict';
-
-var $ = require('jquery');
-var socket = require('../socket');
+import $ from 'jquery';
+import { onLogMessage } from '../socket';
 
 /** Whether or not the window has focus. */
 var windowFocused = true;
@@ -41,14 +39,14 @@ function handleBlur() {
  * line count if the window doesn't have focus.
  * @param message the message that was received
  */
-function onLogMessage(message) {
+function onIncomingMessage(message) {
     if (!windowFocused) {
-        document.title = '(' + (++unreadLineCount) + ') ' + originalTitle;
+        document.title = `(${++unreadLineCount}) ${originalTitle}`;
     }
 }
 
 $(document).ready(function() {
-    socket.onLogMessage(onLogMessage);
+    onLogMessage(onIncomingMessage);
     $(window)
         .on('focus', handleFocus)
         .on('blur', handleBlur);

@@ -1,13 +1,11 @@
 /**
  * Handles messages received from the WebSocket server.
  */
-'use strict';
-
-var $ = require('jquery');
-var socket = require('../socket');
+import $ from 'jquery';
+import { onLogMessage } from '../socket';
 
 /** The maximum number of log entries to display before removing old entries. */
-var MAX_LINES = 5000;
+const MAX_LINES = 5000;
 
 var $searchText;
 var $logContent;
@@ -47,5 +45,5 @@ $(document).ready(function() {
     $logContent = $('#logContent');
     $searchText = $('#searchText');
 
-    socket.onLogMessage(addLogMessage);
+    onLogMessage(addLogMessage);
 });

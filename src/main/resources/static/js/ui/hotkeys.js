@@ -1,11 +1,9 @@
 /**
  * Manages all shortcut keys.
  */
-'use strict';
-
-var $ = require('jquery');
-var hotkeys = require('hotkeys');
-var is = require('is_js');
+import $ from 'jquery';
+import hotkeys from 'hotkeys';
+import is from 'is_js';
 
 /** The hotkey dispatcher */
 var dispatcher;

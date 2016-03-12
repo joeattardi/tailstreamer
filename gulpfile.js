@@ -8,7 +8,8 @@ var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var gutil = require('gulp-util');
 var postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer-core');
+var autoprefixer = require('autoprefixer');
+var babelify = require('babelify');
 
 if (gutil.env.devel) {
     gutil.log('Building in development mode');
@@ -19,6 +20,7 @@ gulp.task('browserify', function() {
         entries: ['./src/main/resources/static/js/tailstreamer.js'],
         debug: true
     })
+        .transform(babelify)
         .bundle()
         .pipe(source('tailstreamer.js'))
         .pipe(gutil.env.devel ? gutil.noop() : streamify(uglify()))

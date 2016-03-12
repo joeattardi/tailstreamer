@@ -1,16 +1,14 @@
 /**
  * Shows a running total of the number of log messages received.
  */
-'use strict';
-
-var $ = require('jquery');
-var socket = require('../socket');
+import $ from 'jquery';
+import { onLogMessage } from '../socket';
 
 var $counter;
 
 $(document).ready(function () {
     $counter = $('#lineCount');
-    socket.onLogMessage(incrementCounter);
+    onLogMessage(incrementCounter);
 });
 
 function incrementCounter() {

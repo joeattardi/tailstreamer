@@ -1,11 +1,10 @@
 /**
  * Sets all tooltips in the application.
  */
-'use strict';
-
-var $ = require('jquery');
-var is = require('is_js');
-require('qtip2');
+import $ from 'jquery';
+window.jQuery = $;
+import is from 'is_js';
+import 'qtip2';
 
 var $clearButton;
 var $filterButton;
@@ -19,12 +18,12 @@ function initTooltips() {
 
     var hotkeyModifier = is.mac() ? '&#8984;' : 'Alt';
 
-    $clearButton.qtip({content: 'Clear contents <span class="shortcut">' + hotkeyModifier + '+X</span>'});
+    $clearButton.qtip({content: `Clear contents <span class="shortcut">${hotkeyModifier}+X</span>`});
     $filterButton.qtip({content: 'Configure filters'});
     $highlightButton.qtip({content: 'Configure highlighting'});
 
     $searchText.qtip({
-        content: 'Search <span class="shortcut">' + hotkeyModifier + '+S</span>',
+        content: `Search <span class="shortcut">${hotkeyModifier}+S</span>`,
         position: {
             my: 'top center',
             at: 'bottom center',

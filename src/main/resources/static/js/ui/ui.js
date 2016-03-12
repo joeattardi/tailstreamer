@@ -1,19 +1,17 @@
 /**
  * UI module
  */
-'use strict';
+import $ from 'jquery';
+import { connect } from '../socket';
 
-var $ = require('jquery');
-
-var socket = require('../socket');
-require('./clock');
-require('./lineCounter');
-require('./unreadLineCount');
-require('./connectionStatusIndicator');
-require('./tooltips');
-require('./hotkeys');
-require('./messageHandler');
-require('./search');
+import './clock';
+import './lineCounter';
+import './unreadLineCount';
+import './connectionStatusIndicator';
+import './tooltips';
+import './hotkeys';
+import './messageHandler';
+import './search';
 
 var $clearButton;
 var $filterButton;
@@ -48,7 +46,7 @@ function sizeLogContentArea() {
  * Tries to connect.
  */
 function retryConnection() {
-    socket.connect();
+    connect();
 }
 
 function bindEventListeners() {

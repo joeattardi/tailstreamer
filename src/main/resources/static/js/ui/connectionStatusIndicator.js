@@ -1,11 +1,9 @@
 /**
  * Displays the connection status in the main window.
  */
-'use strict';
-
-var $ = require('jquery');
-var socket = require('../socket');
-var noty = require('noty');
+import $ from 'jquery';
+import noty from 'noty';
+import { ConnectionState, onConnectionStateChange } from '../socket';
 
 var $notificationContainer;
 var $connectionStatus;
@@ -29,7 +27,7 @@ function setConnectionState(state) {
     $icon.removeClass();
 
     switch (state) {
-        case socket.ConnectionState.DISCONNECTED:
+        case ConnectionState.DISCONNECTED:
             $notificationContainer.noty({
                 text: 'Disconnected from server',
                 timeout: 2000,
@@ -46,7 +44,7 @@ function setConnectionState(state) {
                 });
             $reconnectButton.show();
             break;
-        case socket.ConnectionState.FAILED:
+        case ConnectionState.FAILED:
             $notificationContainer.noty({
                 text: 'Failed to connect to the server',
                 timeout: 2000,
@@ -63,7 +61,7 @@ function setConnectionState(state) {
                 });
             $reconnectButton.show();
             break;
-        case socket.ConnectionState.CONNECTING:
+        case ConnectionState.CONNECTING:
             $icon.addClass('fa fa-lg fa-spin fa-refresh')
                 .qtip({
                     content: 'Connecting',
@@ -75,7 +73,7 @@ function setConnectionState(state) {
                 });
             $reconnectButton.hide();
             break;
-        case socket.ConnectionState.CONNECTED:
+        case ConnectionState.CONNECTED:
             $notificationContainer.noty({
                 text: 'Connected to server',
                 timeout: 1000,
@@ -103,5 +101,5 @@ $(document).ready(function() {
     $reconnectButton = $('#reconnectButton');
 
     setDefaults();
-    socket.onConnectionStateChange(setConnectionState);
+    onConnectionStateChange(setConnectionState);
 });

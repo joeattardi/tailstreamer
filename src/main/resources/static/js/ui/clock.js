@@ -2,10 +2,8 @@
  * A clock that keeps track of the elapsed time connected
  * to the server.
  */
-'use strict';
-
-var $ = require('jquery');
-var socket = require('../socket');
+import $ from 'jquery';
+import { ConnectionState, onConnectionStateChange } from '../socket';
 
 var startTime = new Date().getTime();
 var interval;
@@ -14,7 +12,7 @@ var $clock;
 $(document).ready(initClock);
 
 function initClock() {
-    socket.onConnectionStateChange(setConnectionState);
+    onConnectionStateChange(setConnectionState);
     $clock = $('#elapsed');
 }
 
@@ -36,11 +34,11 @@ function zeroPad(value) {
 
 function setConnectionState(state) {
     switch (state) {
-        case socket.ConnectionState.DISCONNECTED:
-        case socket.ConnectionState.FAILED:
+        case ConnectionState.DISCONNECTED:
+        case ConnectionState.FAILED:
             clearInterval(interval);
             break;
-        case socket.ConnectionState.CONNECTED:
+        case ConnectionState.CONNECTED:
             startTime = new Date().getTime();
             interval = window.setInterval(updateClock, 1000);
             break;

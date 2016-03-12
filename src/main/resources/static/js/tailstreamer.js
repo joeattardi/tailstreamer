@@ -1,15 +1,13 @@
 /**
  * Entry point of the application
  */
-'use strict';
-
-var $ = require('jquery');
+const $ = require('jquery');
 window.jQuery = $;
 
 require('./ui/ui');
-var socket = require('./socket');
+const socket = require('./socket');
 
-var jQuery = $;
+const jQuery = $;
 
 function init() {
     fixContains();

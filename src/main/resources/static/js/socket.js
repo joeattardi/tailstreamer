@@ -1,19 +1,17 @@
 /**
  * WebSocket communications layer module
  */
-'use strict';
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+import ee from 'event-emitter';
 
-var SockJS = require('sockjs-client');
-var Stomp = require('stompjs');
-var ee = require('event-emitter');
+const EVENT_CONNECTION_STATE_CHANGE = 'connectionstatechange';
+const EVENT_LOG_MESSAGE_RECEIVE = 'logmessagereceive';
 
-var EVENT_CONNECTION_STATE_CHANGE = 'connectionstatechange';
-var EVENT_LOG_MESSAGE_RECEIVE = 'logmessagereceive';
+const SOCKJS_ENDPOINT = '/tail';
+const STOMP_TOPIC = '/topic/log';
 
-var SOCKJS_ENDPOINT = '/tail';
-var STOMP_TOPIC = '/topic/log';
-
-var ConnectionState = {
+export const ConnectionState = {
     DISCONNECTED: 0,
     FAILED: 1,
     CONNECTING: 2,
@@ -34,7 +32,7 @@ var emitter = ee({});
 /**
  * Initiates the STOMP over SockJS connection.
  */
-function connect() {
+export function connect() {
     socket = new SockJS(SOCKJS_ENDPOINT);
     stompClient = Stomp.over(socket);
     stompClient.debug = false;
@@ -79,7 +77,7 @@ function closeConnection(onclose) {
  * Adds a listener for the EVENT_CONNECTION_STATE_CHANGE event.
  * @param listener the listener function
  */
-function onConnectionStateChange(listener) {
+export function onConnectionStateChange(listener) {
     emitter.on(EVENT_CONNECTION_STATE_CHANGE, listener);
 }
 
@@ -87,11 +85,6 @@ function onConnectionStateChange(listener) {
  * Adds a listener for the EVENT_LOG_MESSAGE_RECEIVE event.
  * @param listener the listener function
  */
-function onLogMessage(listener) {
+export function onLogMessage(listener) {
     emitter.on(EVENT_LOG_MESSAGE_RECEIVE, listener);
 }
-
-exports.connect = connect;
-exports.onConnectionStateChange = onConnectionStateChange;
-exports.onLogMessage = onLogMessage;
-exports.ConnectionState = ConnectionState;
